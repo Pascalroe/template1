@@ -6,7 +6,7 @@
     <title>Features - NEURONIX AI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
     <script>
@@ -14,13 +14,12 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#050505',
-                        secondary: '#111111',
-                        tertiary: '#1A1A1A',
-                        accent: { blue: '#4F8CFF', cyan: '#00D9FF', purple: '#8B5CF6' }
+                        primary: '#F8FAFC',
+                        secondary: '#FFFFFF',
+                        tertiary: '#F1F5F9',
+                        accent: { blue: '#2563EB', cyan: '#0EA5E9', purple: '#8B5CF6' }
                     },
                     fontFamily: {
-                        space: ['Space Grotesk', 'sans-serif'],
                         inter: ['Inter', 'sans-serif']
                     }
                 }
@@ -28,9 +27,9 @@
         }
     </script>
 </head>
-<body class="bg-primary text-white font-inter overflow-x-hidden">
+<body class="bg-slate-50 text-slate-900 font-inter overflow-x-hidden">
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-primary/80 backdrop-blur-xl border-b border-white/5">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <a href="index.html" class="flex items-center gap-2">
@@ -39,28 +38,48 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                         </svg>
                     </div>
-                    <span class="font-space font-bold text-xl">NEURONIX</span>
+                    <span class="font-inter font-bold text-xl">NEURONIX</span>
                 </a>
                 <div class="hidden md:flex items-center gap-8">
-                    <a href="features.html" class="text-sm text-accent-cyan">Features</a>
-                    <a href="pricing.html" class="text-sm text-gray-400 hover:text-white transition-colors">Pricing</a>
-                    <a href="integrations.html" class="text-sm text-gray-400 hover:text-white transition-colors">Integrations</a>
-                    <a href="blog.html" class="text-sm text-gray-400 hover:text-white transition-colors">Blog</a>
-                    <a href="contact.html" class="text-sm text-gray-400 hover:text-white transition-colors">Contact</a>
+                    <a href="features.html" class="text-sm text-accent-blue">Features</a>
+                    <a href="pricing.html" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Pricing</a>
+                    <a href="integrations.html" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Integrations</a>
+                    <a href="blog.html" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Blog</a>
+                    <a href="contact.html" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Contact</a>
                 </div>
                 <div class="flex items-center gap-4">
-                    <a href="contact.html" class="px-4 py-2 text-sm font-medium bg-white text-primary rounded-lg hover:bg-gray-200 transition-colors">Get Started</a>
+                    <a href="contact.html" class="px-4 py-2 text-sm font-medium bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors">Get Started</a>
+                    <button id="burger-btn" class="md:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-slate-100 transition-colors" aria-label="Toggle menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path id="burger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
 
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl hidden md:hidden">
+        <div class="flex flex-col h-full pt-20 px-6">
+            <div class="flex flex-col gap-6">
+                <a href="features.html" class="text-lg text-accent-blue py-2 border-b border-slate-200">Features</a>
+                <a href="pricing.html" class="text-lg text-slate-600 hover:text-slate-900 transition-colors py-2 border-b border-slate-200">Pricing</a>
+                <a href="integrations.html" class="text-lg text-slate-600 hover:text-slate-900 transition-colors py-2 border-b border-slate-200">Integrations</a>
+                <a href="blog.html" class="text-lg text-slate-600 hover:text-slate-900 transition-colors py-2 border-b border-slate-200">Blog</a>
+                <a href="contact.html" class="text-lg text-slate-600 hover:text-slate-900 transition-colors py-2 border-b border-slate-200">Contact</a>
+            </div>
+            <div class="mt-auto pb-8">
+                <a href="contact.html" class="block w-full py-3 text-center bg-slate-900 text-white font-medium rounded-lg hover:bg-slate-800 transition-colors">Get Started</a>
+            </div>
+        </div>
+    </div>
+
     <!-- Hero -->
     <section class="pt-32 pb-16">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto">
-                <h1 class="font-space text-5xl md:text-6xl font-bold mb-6">Powerful Features for Modern Teams</h1>
-                <p class="text-xl text-gray-400">Everything you need to build, deploy, and scale AI solutions</p>
+                <h1 class="font-inter text-5xl md:text-6xl font-bold mb-6">Powerful Features for Modern Teams</h1>
+                <p class="text-xl text-slate-500">Everything you need to build, deploy, and scale AI solutions</p>
             </div>
         </div>
     </section>
@@ -72,12 +91,12 @@
                 <!-- Sticky Sidebar -->
                 <aside class="lg:w-64 flex-shrink-0">
                     <div class="lg:sticky lg:top-24 space-y-2">
-                        <a href="#workflow" class="block px-4 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-colors">Visual Workflow Builder</a>
-                        <a href="#analytics" class="block px-4 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-colors">Advanced Analytics</a>
-                        <a href="#security" class="block px-4 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-colors">Enterprise Security</a>
-                        <a href="#api" class="block px-4 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-colors">API & Integrations</a>
-                        <a href="#collaboration" class="block px-4 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-colors">Team Collaboration</a>
-                        <a href="#automation" class="block px-4 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-colors">Automation</a>
+                        <a href="#workflow" class="block px-4 py-2 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors">Visual Workflow Builder</a>
+                        <a href="#analytics" class="block px-4 py-2 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors">Advanced Analytics</a>
+                        <a href="#security" class="block px-4 py-2 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors">Enterprise Security</a>
+                        <a href="#api" class="block px-4 py-2 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors">API & Integrations</a>
+                        <a href="#collaboration" class="block px-4 py-2 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors">Team Collaboration</a>
+                        <a href="#automation" class="block px-4 py-2 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors">Automation</a>
                     </div>
                 </aside>
 
@@ -86,64 +105,64 @@
                     <!-- Visual Workflow Builder -->
                     <div id="workflow" class="scroll-mt-24">
                         <div class="mb-8">
-                            <div class="w-14 h-14 rounded-2xl bg-accent-blue/20 flex items-center justify-center mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-blue-100 flex items-center justify-center mb-6">
                                 <svg class="w-7 h-7 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                                 </svg>
                             </div>
-                            <h2 class="font-space text-3xl font-bold mb-4">Visual Workflow Builder</h2>
-                            <p class="text-gray-400 text-lg">Design complex AI automations with our intuitive drag-and-drop interface. No coding required—just connect nodes, configure settings, and deploy.</p>
+                            <h2 class="font-inter text-3xl font-bold mb-4">Visual Workflow Builder</h2>
+                            <p class="text-slate-500 text-lg">Design complex AI automations with our intuitive drag-and-drop interface. No coding required—just connect nodes, configure settings, and deploy.</p>
                         </div>
-                        <div class="bg-secondary rounded-2xl border border-white/10 overflow-hidden">
-                            <div class="flex items-center gap-2 px-4 py-3 border-b border-white/10">
+                        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                            <div class="flex items-center gap-2 px-4 py-3 border-b border-slate-100">
                                 <div class="w-3 h-3 rounded-full bg-red-500"></div>
                                 <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
                                 <div class="w-3 h-3 rounded-full bg-green-500"></div>
                             </div>
                             <div class="p-8">
                                 <div class="flex items-center gap-4 mb-8">
-                                    <div class="w-32 h-20 bg-accent-blue/20 rounded-xl border border-accent-blue/30 flex items-center justify-center">
+                                    <div class="w-32 h-20 bg-blue-50 rounded-xl border border-blue-200 flex items-center justify-center">
                                         <svg class="w-8 h-8 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
                                         </svg>
                                     </div>
-                                    <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-6 h-6 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                                     </svg>
-                                    <div class="w-32 h-20 bg-accent-purple/20 rounded-xl border border-accent-purple/30 flex items-center justify-center">
+                                    <div class="w-32 h-20 bg-purple-50 rounded-xl border border-purple-200 flex items-center justify-center">
                                         <svg class="w-8 h-8 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
                                         </svg>
                                     </div>
-                                    <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-6 h-6 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                                     </svg>
-                                    <div class="w-32 h-20 bg-accent-cyan/20 rounded-xl border border-accent-cyan/30 flex items-center justify-center">
+                                    <div class="w-32 h-20 bg-cyan-50 rounded-xl border border-cyan-200 flex items-center justify-center">
                                         <svg class="w-8 h-8 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"/>
                                         </svg>
                                     </div>
                                 </div>
                                 <div class="grid grid-cols-4 gap-4">
-                                    <div class="bg-white/5 rounded-lg p-3 text-center text-sm text-gray-400">Trigger</div>
-                                    <div class="bg-white/5 rounded-lg p-3 text-center text-sm text-gray-400">Transform</div>
-                                    <div class="bg-white/5 rounded-lg p-3 text-center text-sm text-gray-400">AI Process</div>
-                                    <div class="bg-white/5 rounded-lg p-3 text-center text-sm text-gray-400">Output</div>
+                                    <div class="bg-slate-50 rounded-lg p-3 text-center text-sm text-slate-500">Trigger</div>
+                                    <div class="bg-slate-50 rounded-lg p-3 text-center text-sm text-slate-500">Transform</div>
+                                    <div class="bg-slate-50 rounded-lg p-3 text-center text-sm text-slate-500">AI Process</div>
+                                    <div class="bg-slate-50 rounded-lg p-3 text-center text-sm text-slate-500">Output</div>
                                 </div>
                             </div>
                         </div>
                         <div class="grid md:grid-cols-3 gap-6 mt-8">
-                            <div class="bg-secondary rounded-xl p-6 border border-white/10">
+                            <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm">
                                 <h4 class="font-semibold mb-2">50+ Node Types</h4>
-                                <p class="text-sm text-gray-400">Pre-built nodes for data processing, AI models, and integrations</p>
+                                <p class="text-sm text-slate-500">Pre-built nodes for data processing, AI models, and integrations</p>
                             </div>
-                            <div class="bg-secondary rounded-xl p-6 border border-white/10">
+                            <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm">
                                 <h4 class="font-semibold mb-2">Conditional Logic</h4>
-                                <p class="text-sm text-gray-400">Build complex branching workflows with if/else conditions</p>
+                                <p class="text-sm text-slate-500">Build complex branching workflows with if/else conditions</p>
                             </div>
-                            <div class="bg-secondary rounded-xl p-6 border border-white/10">
+                            <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm">
                                 <h4 class="font-semibold mb-2">Version Control</h4>
-                                <p class="text-sm text-gray-400">Track changes, rollback, and collaborate with your team</p>
+                                <p class="text-sm text-slate-500">Track changes, rollback, and collaborate with your team</p>
                             </div>
                         </div>
                     </div>
@@ -151,65 +170,65 @@
                     <!-- Advanced Analytics -->
                     <div id="analytics" class="scroll-mt-24">
                         <div class="mb-8">
-                            <div class="w-14 h-14 rounded-2xl bg-accent-cyan/20 flex items-center justify-center mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-cyan-100 flex items-center justify-center mb-6">
                                 <svg class="w-7 h-7 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                                 </svg>
                             </div>
-                            <h2 class="font-space text-3xl font-bold mb-4">Advanced Analytics</h2>
-                            <p class="text-gray-400 text-lg">Gain deep insights into your AI workflows with real-time monitoring, custom dashboards, and detailed performance metrics.</p>
+                            <h2 class="font-inter text-3xl font-bold mb-4">Advanced Analytics</h2>
+                            <p class="text-slate-500 text-lg">Gain deep insights into your AI workflows with real-time monitoring, custom dashboards, and detailed performance metrics.</p>
                         </div>
-                        <div class="bg-secondary rounded-2xl border border-white/10 p-8">
+                        <div class="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
                             <div class="flex items-center justify-between mb-6">
                                 <div>
                                     <h4 class="font-semibold">Performance Overview</h4>
-                                    <p class="text-sm text-gray-400">Last 30 days</p>
+                                    <p class="text-sm text-slate-400">Last 30 days</p>
                                 </div>
-                                <select class="bg-tertiary border border-white/10 rounded-lg px-3 py-2 text-sm">
+                                <select class="bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm">
                                     <option>Last 30 days</option>
                                     <option>Last 7 days</option>
                                     <option>Last 90 days</option>
                                 </select>
                             </div>
                             <div class="grid grid-cols-4 gap-4 mb-8">
-                                <div class="bg-tertiary rounded-xl p-4">
+                                <div class="bg-slate-50 rounded-xl p-4">
                                     <div class="text-2xl font-bold text-accent-cyan">2.4M</div>
-                                    <div class="text-xs text-gray-400">Total Requests</div>
+                                    <div class="text-xs text-slate-400">Total Requests</div>
                                 </div>
-                                <div class="bg-tertiary rounded-xl p-4">
+                                <div class="bg-slate-50 rounded-xl p-4">
                                     <div class="text-2xl font-bold text-accent-blue">99.9%</div>
-                                    <div class="text-xs text-gray-400">Uptime</div>
+                                    <div class="text-xs text-slate-400">Uptime</div>
                                 </div>
-                                <div class="bg-tertiary rounded-xl p-4">
+                                <div class="bg-slate-50 rounded-xl p-4">
                                     <div class="text-2xl font-bold text-accent-purple">23ms</div>
-                                    <div class="text-xs text-gray-400">Avg Latency</div>
+                                    <div class="text-xs text-slate-400">Avg Latency</div>
                                 </div>
-                                <div class="bg-tertiary rounded-xl p-4">
+                                <div class="bg-slate-50 rounded-xl p-4">
                                     <div class="text-2xl font-bold text-accent-cyan">98.5%</div>
-                                    <div class="text-xs text-gray-400">Success Rate</div>
+                                    <div class="text-xs text-slate-400">Success Rate</div>
                                 </div>
                             </div>
                             <div class="h-48 flex items-end justify-between gap-2">
-                                <div class="flex-1 bg-gradient-to-t from-accent-blue/30 to-accent-blue/10 rounded-t-lg relative" style="height: 60%">
-                                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-gray-400">Mon</div>
+                                <div class="flex-1 bg-gradient-to-t from-blue-200 to-blue-100 rounded-t-lg relative" style="height: 60%">
+                                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-slate-400">Mon</div>
                                 </div>
-                                <div class="flex-1 bg-gradient-to-t from-accent-blue/30 to-accent-blue/10 rounded-t-lg relative" style="height: 80%">
-                                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-gray-400">Tue</div>
+                                <div class="flex-1 bg-gradient-to-t from-blue-200 to-blue-100 rounded-t-lg relative" style="height: 80%">
+                                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-slate-400">Tue</div>
                                 </div>
-                                <div class="flex-1 bg-gradient-to-t from-accent-blue/30 to-accent-blue/10 rounded-t-lg relative" style="height: 45%">
-                                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-gray-400">Wed</div>
+                                <div class="flex-1 bg-gradient-to-t from-blue-200 to-blue-100 rounded-t-lg relative" style="height: 45%">
+                                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-slate-400">Wed</div>
                                 </div>
-                                <div class="flex-1 bg-gradient-to-t from-accent-blue/30 to-accent-blue/10 rounded-t-lg relative" style="height: 90%">
-                                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-gray-400">Thu</div>
+                                <div class="flex-1 bg-gradient-to-t from-blue-200 to-blue-100 rounded-t-lg relative" style="height: 90%">
+                                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-slate-400">Thu</div>
                                 </div>
-                                <div class="flex-1 bg-gradient-to-t from-accent-blue/30 to-accent-blue/10 rounded-t-lg relative" style="height: 70%">
-                                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-gray-400">Fri</div>
+                                <div class="flex-1 bg-gradient-to-t from-blue-200 to-blue-100 rounded-t-lg relative" style="height: 70%">
+                                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-slate-400">Fri</div>
                                 </div>
-                                <div class="flex-1 bg-gradient-to-t from-accent-blue/30 to-accent-blue/10 rounded-t-lg relative" style="height: 55%">
-                                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-gray-400">Sat</div>
+                                <div class="flex-1 bg-gradient-to-t from-blue-200 to-blue-100 rounded-t-lg relative" style="height: 55%">
+                                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-slate-400">Sat</div>
                                 </div>
-                                <div class="flex-1 bg-gradient-to-t from-accent-blue/30 to-accent-blue/10 rounded-t-lg relative" style="height: 40%">
-                                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-gray-400">Sun</div>
+                                <div class="flex-1 bg-gradient-to-t from-blue-200 to-blue-100 rounded-t-lg relative" style="height: 40%">
+                                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-slate-400">Sun</div>
                                 </div>
                             </div>
                         </div>
@@ -218,70 +237,70 @@
                     <!-- Enterprise Security -->
                     <div id="security" class="scroll-mt-24">
                         <div class="mb-8">
-                            <div class="w-14 h-14 rounded-2xl bg-accent-purple/20 flex items-center justify-center mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-purple-100 flex items-center justify-center mb-6">
                                 <svg class="w-7 h-7 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
                                 </svg>
                             </div>
-                            <h2 class="font-space text-3xl font-bold mb-4">Enterprise Security</h2>
-                            <p class="text-gray-400 text-lg">Rest easy with bank-level security, compliance certifications, and granular access controls designed for enterprise requirements.</p>
+                            <h2 class="font-inter text-3xl font-bold mb-4">Enterprise Security</h2>
+                            <p class="text-slate-500 text-lg">Rest easy with bank-level security, compliance certifications, and granular access controls designed for enterprise requirements.</p>
                         </div>
                         <div class="grid md:grid-cols-2 gap-6">
-                            <div class="bg-secondary rounded-2xl p-8 border border-white/10">
+                            <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
                                 <div class="flex items-center gap-4 mb-4">
-                                    <div class="w-12 h-12 rounded-xl bg-accent-green/20 flex items-center justify-center">
-                                        <svg class="w-6 h-6 text-accent-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                         </svg>
                                     </div>
                                     <div>
                                         <h4 class="font-semibold">SOC 2 Type II</h4>
-                                        <p class="text-sm text-gray-400">Certified</p>
+                                        <p class="text-sm text-slate-400">Certified</p>
                                     </div>
                                 </div>
-                                <p class="text-gray-400 text-sm">Independently audited and verified security controls</p>
+                                <p class="text-slate-500 text-sm">Independently audited and verified security controls</p>
                             </div>
-                            <div class="bg-secondary rounded-2xl p-8 border border-white/10">
+                            <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
                                 <div class="flex items-center gap-4 mb-4">
-                                    <div class="w-12 h-12 rounded-xl bg-accent-blue/20 flex items-center justify-center">
+                                    <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center">
                                         <svg class="w-6 h-6 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                                         </svg>
                                     </div>
                                     <div>
                                         <h4 class="font-semibold">GDPR Compliant</h4>
-                                        <p class="text-sm text-gray-400">Data Protection</p>
+                                        <p class="text-sm text-slate-400">Data Protection</p>
                                     </div>
                                 </div>
-                                <p class="text-gray-400 text-sm">Full compliance with European data protection regulations</p>
+                                <p class="text-slate-500 text-sm">Full compliance with European data protection regulations</p>
                             </div>
-                            <div class="bg-secondary rounded-2xl p-8 border border-white/10">
+                            <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
                                 <div class="flex items-center gap-4 mb-4">
-                                    <div class="w-12 h-12 rounded-xl bg-accent-purple/20 flex items-center justify-center">
+                                    <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center">
                                         <svg class="w-6 h-6 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                                         </svg>
                                     </div>
                                     <div>
                                         <h4 class="font-semibold">End-to-End Encryption</h4>
-                                        <p class="text-sm text-gray-400">AES-256</p>
+                                        <p class="text-sm text-slate-400">AES-256</p>
                                     </div>
                                 </div>
-                                <p class="text-gray-400 text-sm">All data encrypted in transit and at rest</p>
+                                <p class="text-slate-500 text-sm">All data encrypted in transit and at rest</p>
                             </div>
-                            <div class="bg-secondary rounded-2xl p-8 border border-white/10">
+                            <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
                                 <div class="flex items-center gap-4 mb-4">
-                                    <div class="w-12 h-12 rounded-xl bg-accent-cyan/20 flex items-center justify-center">
+                                    <div class="w-12 h-12 rounded-xl bg-cyan-100 flex items-center justify-center">
                                         <svg class="w-6 h-6 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
                                         </svg>
                                     </div>
                                     <div>
                                         <h4 class="font-semibold">SSO & RBAC</h4>
-                                        <p class="text-sm text-gray-400">Enterprise Identity</p>
+                                        <p class="text-sm text-slate-400">Enterprise Identity</p>
                                     </div>
                                 </div>
-                                <p class="text-gray-400 text-sm">Single sign-on with granular role-based access control</p>
+                                <p class="text-slate-500 text-sm">Single sign-on with granular role-based access control</p>
                             </div>
                         </div>
                     </div>
@@ -289,54 +308,54 @@
                     <!-- API & Integrations -->
                     <div id="api" class="scroll-mt-24">
                         <div class="mb-8">
-                            <div class="w-14 h-14 rounded-2xl bg-accent-blue/20 flex items-center justify-center mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-blue-100 flex items-center justify-center mb-6">
                                 <svg class="w-7 h-7 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                                 </svg>
                             </div>
-                            <h2 class="font-space text-3xl font-bold mb-4">API & Integrations</h2>
-                            <p class="text-gray-400 text-lg">Connect NEURONIX with your existing stack using our REST API or choose from 50+ pre-built integrations.</p>
+                            <h2 class="font-inter text-3xl font-bold mb-4">API & Integrations</h2>
+                            <p class="text-slate-500 text-lg">Connect NEURONIX with your existing stack using our REST API or choose from 50+ pre-built integrations.</p>
                         </div>
-                        <div class="bg-secondary rounded-2xl border border-white/10 p-8">
+                        <div class="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
                             <div class="flex items-center justify-between mb-6">
                                 <h4 class="font-semibold">API Reference</h4>
                                 <span class="text-sm text-accent-cyan">v2.0</span>
                             </div>
-                            <div class="bg-tertiary rounded-xl p-6 font-mono text-sm overflow-x-auto">
-                                <div class="text-gray-400"># Create a new workflow</div>
-                                <div class="text-accent-purple">curl</div>
-                                <div class="text-accent-cyan">-X</div>
-                                <div class="text-white">POST</div>
-                                <div class="text-accent-green">https://api.neuronix.ai/v2/workflows</div>
-                                <div class="text-gray-400">\</div>
-                                <div class="text-accent-purple">-H</div>
-                                <div class="text-accent-green">"Authorization: Bearer YOUR_API_KEY"</div>
-                                <div class="text-gray-400">\</div>
-                                <div class="text-accent-purple">-H</div>
-                                <div class="text-accent-green">"Content-Type: application/json"</div>
-                                <div class="text-gray-400">\</div>
-                                <div class="text-accent-purple">-d</div>
-                                <div class="text-accent-green">'{"name": "My Workflow", "trigger": "webhook"}'</div>
+                            <div class="bg-slate-50 rounded-xl p-6 font-mono text-sm overflow-x-auto">
+                                <div class="text-slate-400"># Create a new workflow</div>
+                                <div class="text-purple-500">curl</div>
+                                <div class="text-cyan-500">-X</div>
+                                <div class="text-slate-900">POST</div>
+                                <div class="text-green-500">https://api.neuronix.ai/v2/workflows</div>
+                                <div class="text-slate-400">\</div>
+                                <div class="text-purple-500">-H</div>
+                                <div class="text-green-500">"Authorization: Bearer YOUR_API_KEY"</div>
+                                <div class="text-slate-400">\</div>
+                                <div class="text-purple-500">-H</div>
+                                <div class="text-green-500">"Content-Type: application/json"</div>
+                                <div class="text-slate-400">\</div>
+                                <div class="text-purple-500">-d</div>
+                                <div class="text-green-500">'{"name": "My Workflow", "trigger": "webhook"}'</div>
                             </div>
                         </div>
                         <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mt-8">
-                            <div class="bg-secondary rounded-xl p-4 border border-white/10 text-center">
+                            <div class="bg-white rounded-xl p-4 border border-slate-200 text-center shadow-sm">
                                 <div class="text-lg font-semibold mb-1">Slack</div>
-                                <div class="text-xs text-gray-400">Messaging</div>
+                                <div class="text-xs text-slate-400">Messaging</div>
                             </div>
-                            <div class="bg-secondary rounded-xl p-4 border border-white/10 text-center">
+                            <div class="bg-white rounded-xl p-4 border border-slate-200 text-center shadow-sm">
                                 <div class="text-lg font-semibold mb-1">Zapier</div>
-                                <div class="text-xs text-gray-400">Automation</div>
+                                <div class="text-xs text-slate-400">Automation</div>
                             </div>
-                            <div class="bg-secondary rounded-xl p-4 border border-white/10 text-center">
+                            <div class="bg-white rounded-xl p-4 border border-slate-200 text-center shadow-sm">
                                 <div class="text-lg font-semibold mb-1">Salesforce</div>
-                                <div class="text-xs text-gray-400">CRM</div>
+                                <div class="text-xs text-slate-400">CRM</div>
                             </div>
-                            <div class="bg-secondary rounded-xl p-4 border border-white/10 text-center">
+                            <div class="bg-white rounded-xl p-4 border border-slate-200 text-center shadow-sm">
                                 <div class="text-lg font-semibold mb-1">HubSpot</div>
-                                <div class="text-xs text-gray-400">Marketing</div>
+                                <div class="text-xs text-slate-400">Marketing</div>
                             </div>
-                            <div class="bg-secondary rounded-xl p-4 border border-white/10 text-center">
+                            <div class="bg-white rounded-xl p-4 border border-slate-200 text-center shadow-sm">
                                 <div class="text-lg font-semibold mb-1">+45 more</div>
                             </div>
                         </div>
@@ -345,49 +364,49 @@
                     <!-- Team Collaboration -->
                     <div id="collaboration" class="scroll-mt-24">
                         <div class="mb-8">
-                            <div class="w-14 h-14 rounded-2xl bg-accent-cyan/20 flex items-center justify-center mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-cyan-100 flex items-center justify-center mb-6">
                                 <svg class="w-7 h-7 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
                                 </svg>
                             </div>
-                            <h2 class="font-space text-3xl font-bold mb-4">Team Collaboration</h2>
-                            <p class="text-gray-400 text-lg">Work together seamlessly with shared workspaces, real-time editing, and built-in version control.</p>
+                            <h2 class="font-inter text-3xl font-bold mb-4">Team Collaboration</h2>
+                            <p class="text-slate-500 text-lg">Work together seamlessly with shared workspaces, real-time editing, and built-in version control.</p>
                         </div>
-                        <div class="bg-secondary rounded-2xl border border-white/10 p-8">
+                        <div class="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
                             <div class="flex items-center gap-4 mb-8">
                                 <div class="flex -space-x-3">
-                                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-accent-blue to-accent-cyan border-2 border-secondary"></div>
-                                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-accent-purple to-accent-blue border-2 border-secondary"></div>
-                                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-accent-cyan to-accent-purple border-2 border-secondary"></div>
-                                    <div class="w-10 h-10 rounded-full bg-tertiary border-2 border-secondary flex items-center justify-center text-xs">+5</div>
+                                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-accent-blue to-accent-cyan border-2 border-white"></div>
+                                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-accent-purple to-accent-blue border-2 border-white"></div>
+                                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-accent-cyan to-accent-purple border-2 border-white"></div>
+                                    <div class="w-10 h-10 rounded-full bg-slate-200 border-2 border-white flex items-center justify-center text-xs">+5</div>
                                 </div>
                                 <div>
                                     <h4 class="font-semibold">Engineering Team</h4>
-                                    <p class="text-sm text-gray-400">7 members • 3 active workflows</p>
+                                    <p class="text-sm text-slate-400">7 members • 3 active workflows</p>
                                 </div>
                             </div>
                             <div class="space-y-4">
-                                <div class="flex items-center gap-4 p-4 bg-tertiary rounded-xl">
-                                    <div class="w-10 h-10 rounded-full bg-accent-blue/30 flex items-center justify-center">
+                                <div class="flex items-center gap-4 p-4 bg-slate-50 rounded-xl">
+                                    <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
                                         <svg class="w-5 h-5 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                                         </svg>
                                     </div>
                                     <div class="flex-1">
                                         <div class="font-medium">Updated ML Pipeline</div>
-                                        <div class="text-sm text-gray-400">Sarah Chen • 2 hours ago</div>
+                                        <div class="text-sm text-slate-400">Sarah Chen • 2 hours ago</div>
                                     </div>
-                                    <span class="text-xs text-gray-500">v3.2</span>
+                                    <span class="text-xs text-slate-400">v3.2</span>
                                 </div>
-                                <div class="flex items-center gap-4 p-4 bg-tertiary rounded-xl">
-                                    <div class="w-10 h-10 rounded-full bg-accent-purple/30 flex items-center justify-center">
+                                <div class="flex items-center gap-4 p-4 bg-slate-50 rounded-xl">
+                                    <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center">
                                         <svg class="w-5 h-5 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
                                         </svg>
                                     </div>
                                     <div class="flex-1">
                                         <div class="font-medium">Commented on Data Processing</div>
-                                        <div class="text-sm text-gray-400">Marcus Johnson • 4 hours ago</div>
+                                        <div class="text-sm text-slate-400">Marcus Johnson • 4 hours ago</div>
                                     </div>
                                 </div>
                             </div>
@@ -397,68 +416,68 @@
                     <!-- Automation -->
                     <div id="automation" class="scroll-mt-24">
                         <div class="mb-8">
-                            <div class="w-14 h-14 rounded-2xl bg-accent-purple/20 flex items-center justify-center mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-purple-100 flex items-center justify-center mb-6">
                                 <svg class="w-7 h-7 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
                                 </svg>
                             </div>
-                            <h2 class="font-space text-3xl font-bold mb-4">Smart Automation</h2>
-                            <p class="text-gray-400 text-lg">Schedule, trigger, and chain workflows automatically. Set it and forget it with intelligent retry logic and error handling.</p>
+                            <h2 class="font-inter text-3xl font-bold mb-4">Smart Automation</h2>
+                            <p class="text-slate-500 text-lg">Schedule, trigger, and chain workflows automatically. Set it and forget it with intelligent retry logic and error handling.</p>
                         </div>
-                        <div class="bg-secondary rounded-2xl border border-white/10 p-8">
+                        <div class="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
                             <h4 class="font-semibold mb-6">Automation Rules</h4>
                             <div class="space-y-4">
-                                <div class="flex items-center justify-between p-4 bg-tertiary rounded-xl">
+                                <div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl">
                                     <div class="flex items-center gap-4">
-                                        <div class="w-10 h-10 rounded-lg bg-accent-blue/20 flex items-center justify-center">
+                                        <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
                                             <svg class="w-5 h-5 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                             </svg>
                                         </div>
                                         <div>
                                             <div class="font-medium">Daily Report Generation</div>
-                                            <div class="text-sm text-gray-400">Every day at 9:00 AM</div>
+                                            <div class="text-sm text-slate-400">Every day at 9:00 AM</div>
                                         </div>
                                     </div>
                                     <div class="flex items-center gap-3">
-                                        <span class="w-10 h-6 bg-accent-cyan/30 rounded-full relative">
-                                            <span class="absolute right-1 top-1 w-4 h-4 bg-accent-cyan rounded-full"></span>
+                                        <span class="w-10 h-6 bg-cyan-100 rounded-full relative">
+                                            <span class="absolute right-1 top-1 w-4 h-4 bg-cyan-500 rounded-full"></span>
                                         </span>
                                     </div>
                                 </div>
-                                <div class="flex items-center justify-between p-4 bg-tertiary rounded-xl">
+                                <div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl">
                                     <div class="flex items-center gap-4">
-                                        <div class="w-10 h-10 rounded-lg bg-accent-purple/20 flex items-center justify-center">
+                                        <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center">
                                             <svg class="w-5 h-5 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
                                             </svg>
                                         </div>
                                         <div>
                                             <div class="font-medium">Alert on Error</div>
-                                            <div class="text-sm text-gray-400">Send Slack notification</div>
+                                            <div class="text-sm text-slate-400">Send Slack notification</div>
                                         </div>
                                     </div>
                                     <div class="flex items-center gap-3">
-                                        <span class="w-10 h-6 bg-accent-cyan/30 rounded-full relative">
-                                            <span class="absolute right-1 top-1 w-4 h-4 bg-accent-cyan rounded-full"></span>
+                                        <span class="w-10 h-6 bg-cyan-100 rounded-full relative">
+                                            <span class="absolute right-1 top-1 w-4 h-4 bg-cyan-500 rounded-full"></span>
                                         </span>
                                     </div>
                                 </div>
-                                <div class="flex items-center justify-between p-4 bg-tertiary rounded-xl">
+                                <div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl">
                                     <div class="flex items-center gap-4">
-                                        <div class="w-10 h-10 rounded-lg bg-accent-cyan/20 flex items-center justify-center">
+                                        <div class="w-10 h-10 rounded-lg bg-cyan-100 flex items-center justify-center">
                                             <svg class="w-5 h-5 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
                                             </svg>
                                         </div>
                                         <div>
                                             <div class="font-medium">Auto-retry Failed Jobs</div>
-                                            <div class="text-sm text-gray-400">3 attempts with exponential backoff</div>
+                                            <div class="text-sm text-slate-400">3 attempts with exponential backoff</div>
                                         </div>
                                     </div>
                                     <div class="flex items-center gap-3">
-                                        <span class="w-10 h-6 bg-accent-cyan/30 rounded-full relative">
-                                            <span class="absolute right-1 top-1 w-4 h-4 bg-accent-cyan rounded-full"></span>
+                                        <span class="w-10 h-6 bg-cyan-100 rounded-full relative">
+                                            <span class="absolute right-1 top-1 w-4 h-4 bg-cyan-500 rounded-full"></span>
                                         </span>
                                     </div>
                                 </div>
@@ -471,17 +490,17 @@
     </section>
 
     <!-- CTA -->
-    <section class="py-24 bg-secondary relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-r from-accent-blue/10 to-accent-purple/10"></div>
+    <section class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-50 to-purple-50"></div>
         <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center relative">
-            <h2 class="font-space text-4xl font-bold mb-6">Ready to get started?</h2>
-            <p class="text-xl text-gray-300 mb-10">Start building powerful AI workflows today.</p>
-            <a href="contact.html" class="inline-block px-8 py-4 bg-gradient-to-r from-accent-blue to-accent-cyan text-primary font-semibold rounded-xl hover:opacity-90 transition-opacity">Start Free Trial</a>
+            <h2 class="font-inter text-4xl font-bold mb-6">Ready to get started?</h2>
+            <p class="text-xl text-slate-600 mb-10">Start building powerful AI workflows today.</p>
+            <a href="contact.html" class="inline-block px-8 py-4 bg-gradient-to-r from-accent-blue to-accent-cyan text-white font-semibold rounded-xl hover:opacity-90 transition-opacity">Start Free Trial</a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-16 border-t border-white/10">
+    <footer class="py-16 border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="grid md:grid-cols-5 gap-12">
                 <div class="md:col-span-2">
@@ -491,34 +510,34 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                             </svg>
                         </div>
-                        <span class="font-space font-bold text-xl">NEURONIX</span>
+                        <span class="font-inter font-bold text-xl">NEURONIX</span>
                     </a>
-                    <p class="text-gray-400 text-sm">Build the future with AI automation.</p>
+                    <p class="text-slate-500 text-sm">Build the future with AI automation.</p>
                 </div>
                 <div>
                     <h4 class="font-semibold mb-4">Product</h4>
-                    <ul class="space-y-3 text-sm text-gray-400">
-                        <li><a href="features.html" class="hover:text-white transition-colors">Features</a></li>
-                        <li><a href="pricing.html" class="hover:text-white transition-colors">Pricing</a></li>
-                        <li><a href="integrations.html" class="hover:text-white transition-colors">Integrations</a></li>
+                    <ul class="space-y-3 text-sm text-slate-500">
+                        <li><a href="features.html" class="hover:text-slate-900 transition-colors">Features</a></li>
+                        <li><a href="pricing.html" class="hover:text-slate-900 transition-colors">Pricing</a></li>
+                        <li><a href="integrations.html" class="hover:text-slate-900 transition-colors">Integrations</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-semibold mb-4">Company</h4>
-                    <ul class="space-y-3 text-sm text-gray-400">
-                        <li><a href="blog.html" class="hover:text-white transition-colors">Blog</a></li>
-                        <li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li>
+                    <ul class="space-y-3 text-sm text-slate-500">
+                        <li><a href="blog.html" class="hover:text-slate-900 transition-colors">Blog</a></li>
+                        <li><a href="contact.html" class="hover:text-slate-900 transition-colors">Contact</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-semibold mb-4">Legal</h4>
-                    <ul class="space-y-3 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-colors">Privacy</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Terms</a></li>
+                    <ul class="space-y-3 text-sm text-slate-500">
+                        <li><a href="#" class="hover:text-slate-900 transition-colors">Privacy</a></li>
+                        <li><a href="#" class="hover:text-slate-900 transition-colors">Terms</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="mt-12 pt-8 border-t border-white/5 text-center text-sm text-gray-500">
+            <div class="mt-12 pt-8 border-t border-slate-100 text-center text-sm text-slate-400">
                 © 2026 NEURONIX AI. All rights reserved.
             </div>
         </div>

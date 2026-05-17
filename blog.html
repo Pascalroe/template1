@@ -6,7 +6,7 @@
     <title>Blog - NEURONIX AI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
     <script>
@@ -14,17 +14,19 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#050505',
-                        secondary: '#111111',
-                        tertiary: '#1A1A1A',
+                        primary: '#F8FAFC',
+                        secondary: '#FFFFFF',
+                        tertiary: '#F1F5F9',
+                        text: { dark: '#0F172A', medium: '#475569', light: '#94A3B8' },
                         accent: {
-                            blue: '#4F8CFF',
-                            cyan: '#00D9FF',
-                            purple: '#8B5CF6'
+                            blue: '#2563EB',
+                            cyan: '#0EA5E9',
+                            purple: '#8B5CF6',
+                            light: '#DBEAFE',
+                            darker: '#1D4ED8'
                         }
                     },
                     fontFamily: {
-                        space: ['Space Grotesk', 'sans-serif'],
                         inter: ['Inter', 'sans-serif']
                     }
                 }
@@ -32,9 +34,9 @@
         }
     </script>
 </head>
-<body class="bg-primary text-white font-inter overflow-x-hidden">
+<body class="bg-slate-50 text-slate-900 font-inter overflow-x-hidden">
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-primary/80 backdrop-blur-xl border-b border-white/5">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <a href="index.html" class="flex items-center gap-2">
@@ -43,67 +45,88 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                         </svg>
                     </div>
-                    <span class="font-space font-bold text-xl">NEURONIX</span>
+                    <span class="font-inter font-bold text-xl">NEURONIX</span>
                 </a>
                 <div class="hidden md:flex items-center gap-8">
-                    <a href="features.html" class="text-sm text-gray-400 hover:text-white transition-colors">Features</a>
-                    <a href="pricing.html" class="text-sm text-gray-400 hover:text-white transition-colors">Pricing</a>
-                    <a href="integrations.html" class="text-sm text-gray-400 hover:text-white transition-colors">Integrations</a>
-                    <a href="blog.html" class="text-sm text-white transition-colors">Blog</a>
-                    <a href="contact.html" class="text-sm text-gray-400 hover:text-white transition-colors">Contact</a>
+                    <a href="features.html" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Features</a>
+                    <a href="pricing.html" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Pricing</a>
+                    <a href="integrations.html" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Integrations</a>
+                    <a href="blog.html" class="text-sm text-accent-blue font-medium">Blog</a>
+                    <a href="contact.html" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Contact</a>
                 </div>
                 <div class="flex items-center gap-4">
-                    <a href="contact.html" class="px-4 py-2 text-sm font-medium bg-white text-primary rounded-lg hover:bg-gray-200 transition-colors">Get Started</a>
+                    <a href="contact.html" class="hidden sm:block text-sm text-slate-600 hover:text-slate-900 transition-colors">Sign In</a>
+                    <a href="contact.html" class="px-4 py-2 text-sm font-medium bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors">Get Started</a>
+                    <button id="burger-btn" class="md:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-slate-100 transition-colors" aria-label="Toggle menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path id="burger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
 
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl hidden md:hidden">
+        <div class="flex flex-col h-full pt-20 px-6">
+            <div class="flex flex-col gap-6">
+                <a href="features.html" class="text-lg text-slate-600 hover:text-slate-900 transition-colors py-2 border-b border-slate-200">Features</a>
+                <a href="pricing.html" class="text-lg text-slate-600 hover:text-slate-900 transition-colors py-2 border-b border-slate-200">Pricing</a>
+                <a href="integrations.html" class="text-lg text-slate-600 hover:text-slate-900 transition-colors py-2 border-b border-slate-200">Integrations</a>
+                <a href="blog.html" class="text-lg text-accent-blue font-medium py-2 border-b border-slate-200">Blog</a>
+                <a href="contact.html" class="text-lg text-slate-600 hover:text-slate-900 transition-colors py-2 border-b border-slate-200">Contact</a>
+            </div>
+            <div class="mt-auto pb-8">
+                <a href="contact.html" class="block w-full py-3 text-center bg-slate-900 text-white font-medium rounded-lg hover:bg-slate-800 transition-colors">Get Started</a>
+            </div>
+        </div>
+    </div>
+
     <!-- Hero Section -->
     <section class="relative pt-32 pb-20 overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-b from-accent-blue/5 via-transparent to-transparent"></div>
-        <div class="absolute top-1/3 left-1/4 w-96 h-96 bg-accent-purple/10 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-1/3 right-1/4 w-96 h-96 bg-accent-cyan/10 rounded-full blur-3xl"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-blue-50 via-transparent to-transparent"></div>
+        <div class="absolute top-1/3 left-1/4 w-96 h-96 bg-blue-100 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/3 right-1/4 w-96 h-96 bg-purple-100 rounded-full blur-3xl"></div>
         
         <div class="max-w-7xl mx-auto px-6 lg:px-8 relative">
             <div class="text-center max-w-3xl mx-auto">
-                <h1 class="font-space text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                <h1 class="font-inter text-5xl md:text-7xl font-bold mb-6 leading-tight text-slate-900">
                     Latest<br>
                     <span class="bg-gradient-to-r from-accent-blue via-accent-cyan to-accent-purple bg-clip-text text-transparent">Insights</span>
                 </h1>
-                <p class="text-xl text-gray-400 mb-10">
+                <p class="text-xl text-slate-500 mb-10">
                     Stay ahead with cutting-edge articles on AI automation, machine learning, and the future of work.
                 </p>
             </div>
 
             <!-- Featured Article -->
             <div class="mt-16 relative group cursor-pointer">
-                <div class="absolute -inset-2 bg-gradient-to-r from-accent-blue via-accent-cyan to-accent-purple rounded-3xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity"></div>
-                <div class="relative bg-secondary rounded-2xl overflow-hidden border border-white/10">
+                <div class="absolute -inset-2 bg-gradient-to-r from-accent-blue via-accent-cyan to-accent-purple rounded-3xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity"></div>
+                <div class="relative bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-lg">
                     <div class="grid lg:grid-cols-2 gap-0">
                         <div class="p-8 lg:p-12 flex flex-col justify-center">
-                            <div class="inline-flex items-center gap-2 text-accent-cyan text-sm mb-4">
-                                <span class="px-2 py-1 bg-accent-cyan/10 rounded">Featured</span>
-                                <span>May 12, 2026</span>
+                            <div class="inline-flex items-center gap-2 text-accent-blue text-sm mb-4">
+                                <span class="px-2 py-1 bg-blue-50 rounded text-accent-blue">Featured</span>
+                                <span class="text-slate-500">May 12, 2026</span>
                             </div>
-                            <h2 class="font-space text-3xl lg:text-4xl font-bold mb-4 group-hover:text-accent-cyan transition-colors">
+                            <h2 class="font-inter text-3xl lg:text-4xl font-bold mb-4 text-slate-900 group-hover:text-accent-blue transition-colors">
                                 The Future of AI: How Neural Networks Are Reshaping Enterprise Automation
                             </h2>
-                            <p class="text-gray-400 mb-6">
+                            <p class="text-slate-500 mb-6">
                                 Explore the latest breakthroughs in neural network architecture and discover how they're transforming business processes across industries.
                             </p>
                             <div class="flex items-center gap-3">
                                 <div class="w-10 h-10 rounded-full bg-gradient-to-br from-accent-blue to-accent-cyan"></div>
                                 <div>
-                                    <div class="font-semibold">Dr. Sarah Chen</div>
-                                    <div class="text-sm text-gray-400">AI Research Lead</div>
+                                    <div class="font-semibold text-slate-900">Dr. Sarah Chen</div>
+                                    <div class="text-sm text-slate-500">AI Research Lead</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="relative h-64 lg:h-auto bg-gradient-to-br from-accent-blue/20 via-accent-purple/20 to-accent-cyan/20">
+                        <div class="relative h-64 lg:h-auto bg-gradient-to-br from-blue-50 via-purple-50 to-cyan-50">
                             <div class="absolute inset-0 flex items-center justify-center">
-                                <div class="w-32 h-32 rounded-2xl bg-white/5 backdrop-blur flex items-center justify-center border border-white/10">
-                                    <svg class="w-16 h-16 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div class="w-32 h-32 rounded-2xl bg-white/80 backdrop-blur flex items-center justify-center border border-slate-200 shadow-sm">
+                                    <svg class="w-16 h-16 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                                     </svg>
                                 </div>
@@ -120,157 +143,157 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <!-- Category Filter -->
             <div class="flex flex-wrap gap-4 mb-12">
-                <button class="category-btn active px-4 py-2 rounded-full bg-accent-blue/20 text-accent-blue border border-accent-blue/30 text-sm font-medium transition-all hover:bg-accent-blue/30">All Posts</button>
-                <button class="category-btn px-4 py-2 rounded-full bg-white/5 text-gray-400 border border-white/10 text-sm font-medium transition-all hover:bg-white/10 hover:text-white">AI & Machine Learning</button>
-                <button class="category-btn px-4 py-2 rounded-full bg-white/5 text-gray-400 border border-white/10 text-sm font-medium transition-all hover:bg-white/10 hover:text-white">Automation</button>
-                <button class="category-btn px-4 py-2 rounded-full bg-white/5 text-gray-400 border border-white/10 text-sm font-medium transition-all hover:bg-white/10 hover:text-white">Product Updates</button>
-                <button class="category-btn px-4 py-2 rounded-full bg-white/5 text-gray-400 border border-white/10 text-sm font-medium transition-all hover:bg-white/10 hover:text-white">Case Studies</button>
+                <button class="category-btn active px-4 py-2 rounded-full bg-accent-blue text-white border border-accent-blue text-sm font-medium transition-all hover:bg-accent-darker">All Posts</button>
+                <button class="category-btn px-4 py-2 rounded-full bg-white text-slate-500 border border-slate-200 text-sm font-medium transition-all hover:bg-slate-50 hover:text-slate-900">AI & Machine Learning</button>
+                <button class="category-btn px-4 py-2 rounded-full bg-white text-slate-500 border border-slate-200 text-sm font-medium transition-all hover:bg-slate-50 hover:text-slate-900">Automation</button>
+                <button class="category-btn px-4 py-2 rounded-full bg-white text-slate-500 border border-slate-200 text-sm font-medium transition-all hover:bg-slate-50 hover:text-slate-900">Product Updates</button>
+                <button class="category-btn px-4 py-2 rounded-full bg-white text-slate-500 border border-slate-200 text-sm font-medium transition-all hover:bg-slate-50 hover:text-slate-900">Case Studies</button>
             </div>
 
             <!-- Blog Cards Grid -->
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Blog Card 1 -->
                 <article class="blog-card group">
-                    <div class="relative h-48 bg-gradient-to-br from-accent-blue/20 to-accent-purple/20 rounded-2xl overflow-hidden mb-6">
+                    <div class="relative h-48 bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl overflow-hidden mb-6">
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-12 h-12 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
                             </svg>
                         </div>
-                        <div class="absolute top-4 left-4 px-3 py-1 bg-primary/80 backdrop-blur rounded-full text-xs text-gray-300">AI & ML</div>
+                        <div class="absolute top-4 left-4 px-3 py-1 bg-white/80 backdrop-blur rounded-full text-xs text-slate-600">AI & ML</div>
                     </div>
-                    <div class="text-sm text-gray-400 mb-3">May 10, 2026</div>
-                    <h3 class="font-space text-xl font-bold mb-3 group-hover:text-accent-cyan transition-colors">
+                    <div class="text-sm text-slate-500 mb-3">May 10, 2026</div>
+                    <h3 class="font-inter text-xl font-bold mb-3 text-slate-900 group-hover:text-accent-blue transition-colors">
                         Building Scalable AI Pipelines: Best Practices for 2026
                     </h3>
-                    <p class="text-gray-400 text-sm mb-4">
+                    <p class="text-slate-500 text-sm mb-4">
                         Learn how to design and implement AI pipelines that can handle millions of requests while maintaining accuracy and speed.
                     </p>
                     <div class="flex items-center gap-3">
                         <div class="w-8 h-8 rounded-full bg-gradient-to-br from-accent-purple to-accent-blue"></div>
-                        <div class="text-sm text-gray-400">Marcus Johnson</div>
+                        <div class="text-sm text-slate-500">Marcus Johnson</div>
                     </div>
                 </article>
 
                 <!-- Blog Card 2 -->
                 <article class="blog-card group">
-                    <div class="relative h-48 bg-gradient-to-br from-accent-cyan/20 to-accent-blue/20 rounded-2xl overflow-hidden mb-6">
+                    <div class="relative h-48 bg-gradient-to-br from-cyan-50 to-blue-50 rounded-2xl overflow-hidden mb-6">
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-12 h-12 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
                             </svg>
                         </div>
-                        <div class="absolute top-4 left-4 px-3 py-1 bg-primary/80 backdrop-blur rounded-full text-xs text-gray-300">Automation</div>
+                        <div class="absolute top-4 left-4 px-3 py-1 bg-white/80 backdrop-blur rounded-full text-xs text-slate-600">Automation</div>
                     </div>
-                    <div class="text-sm text-gray-400 mb-3">May 8, 2026</div>
-                    <h3 class="font-space text-xl font-bold mb-3 group-hover:text-accent-cyan transition-colors">
+                    <div class="text-sm text-slate-500 mb-3">May 8, 2026</div>
+                    <h3 class="font-inter text-xl font-bold mb-3 text-slate-900 group-hover:text-accent-blue transition-colors">
                         How Automating Customer Support Increased Our NPS by 45 Points
                     </h3>
-                    <p class="text-gray-400 text-sm mb-4">
+                    <p class="text-slate-500 text-sm mb-4">
                         A deep dive into how one company used NEURONIX to transform their customer support operations.
                     </p>
                     <div class="flex items-center gap-3">
                         <div class="w-8 h-8 rounded-full bg-gradient-to-br from-accent-cyan to-accent-purple"></div>
-                        <div class="text-sm text-gray-400">Emily Rodriguez</div>
+                        <div class="text-sm text-slate-500">Emily Rodriguez</div>
                     </div>
                 </article>
 
                 <!-- Blog Card 3 -->
                 <article class="blog-card group">
-                    <div class="relative h-48 bg-gradient-to-br from-accent-purple/20 to-accent-cyan/20 rounded-2xl overflow-hidden mb-6">
+                    <div class="relative h-48 bg-gradient-to-br from-purple-50 to-cyan-50 rounded-2xl overflow-hidden mb-6">
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-12 h-12 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                             </svg>
                         </div>
-                        <div class="absolute top-4 left-4 px-3 py-1 bg-primary/80 backdrop-blur rounded-full text-xs text-gray-300">Product Updates</div>
+                        <div class="absolute top-4 left-4 px-3 py-1 bg-white/80 backdrop-blur rounded-full text-xs text-slate-600">Product Updates</div>
                     </div>
-                    <div class="text-sm text-gray-400 mb-3">May 5, 2026</div>
-                    <h3 class="font-space text-xl font-bold mb-3 group-hover:text-accent-cyan transition-colors">
+                    <div class="text-sm text-slate-500 mb-3">May 5, 2026</div>
+                    <h3 class="font-inter text-xl font-bold mb-3 text-slate-900 group-hover:text-accent-blue transition-colors">
                         Introducing NEURONIX 3.0: The Next Generation of AI Automation
                     </h3>
-                    <p class="text-gray-400 text-sm mb-4">
+                    <p class="text-slate-500 text-sm mb-4">
                         Our biggest release yet brings revolutionary features including real-time collaboration and advanced analytics.
                     </p>
                     <div class="flex items-center gap-3">
                         <div class="w-8 h-8 rounded-full bg-gradient-to-br from-accent-blue to-accent-cyan"></div>
-                        <div class="text-sm text-gray-400">Product Team</div>
+                        <div class="text-sm text-slate-500">Product Team</div>
                     </div>
                 </article>
 
                 <!-- Blog Card 4 -->
                 <article class="blog-card group">
-                    <div class="relative h-48 bg-gradient-to-br from-accent-blue/20 to-accent-cyan/20 rounded-2xl overflow-hidden mb-6">
+                    <div class="relative h-48 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl overflow-hidden mb-6">
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-12 h-12 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                             </svg>
                         </div>
-                        <div class="absolute top-4 left-4 px-3 py-1 bg-primary/80 backdrop-blur rounded-full text-xs text-gray-300">Case Studies</div>
+                        <div class="absolute top-4 left-4 px-3 py-1 bg-white/80 backdrop-blur rounded-full text-xs text-slate-600">Case Studies</div>
                     </div>
-                    <div class="text-sm text-gray-400 mb-3">May 3, 2026</div>
-                    <h3 class="font-space text-xl font-bold mb-3 group-hover:text-accent-cyan transition-colors">
+                    <div class="text-sm text-slate-500 mb-3">May 3, 2026</div>
+                    <h3 class="font-inter text-xl font-bold mb-3 text-slate-900 group-hover:text-accent-blue transition-colors">
                         How DataCore Reduced Processing Time by 90% with NEURONIX
                     </h3>
-                    <p class="text-gray-400 text-sm mb-4">
+                    <p class="text-slate-500 text-sm mb-4">
                         Discover how a leading data analytics company leveraged our platform to achieve unprecedented efficiency.
                     </p>
                     <div class="flex items-center gap-3">
                         <div class="w-8 h-8 rounded-full bg-gradient-to-br from-accent-purple to-accent-cyan"></div>
-                        <div class="text-sm text-gray-400">Success Stories</div>
+                        <div class="text-sm text-slate-500">Success Stories</div>
                     </div>
                 </article>
 
                 <!-- Blog Card 5 -->
                 <article class="blog-card group">
-                    <div class="relative h-48 bg-gradient-to-br from-accent-cyan/20 to-accent-purple/20 rounded-2xl overflow-hidden mb-6">
+                    <div class="relative h-48 bg-gradient-to-br from-cyan-50 to-purple-50 rounded-2xl overflow-hidden mb-6">
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-12 h-12 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
                             </svg>
                         </div>
-                        <div class="absolute top-4 left-4 px-3 py-1 bg-primary/80 backdrop-blur rounded-full text-xs text-gray-300">AI & ML</div>
+                        <div class="absolute top-4 left-4 px-3 py-1 bg-white/80 backdrop-blur rounded-full text-xs text-slate-600">AI & ML</div>
                     </div>
-                    <div class="text-sm text-gray-400 mb-3">April 28, 2026</div>
-                    <h3 class="font-space text-xl font-bold mb-3 group-hover:text-accent-cyan transition-colors">
+                    <div class="text-sm text-slate-500 mb-3">April 28, 2026</div>
+                    <h3 class="font-inter text-xl font-bold mb-3 text-slate-900 group-hover:text-accent-blue transition-colors">
                         The Rise of Multi-Agent AI Systems in Enterprise Workflows
                     </h3>
-                    <p class="text-gray-400 text-sm mb-4">
+                    <p class="text-slate-500 text-sm mb-4">
                         Explore how multiple AI agents working together are revolutionizing complex business processes.
                     </p>
                     <div class="flex items-center gap-3">
                         <div class="w-8 h-8 rounded-full bg-gradient-to-br from-accent-blue to-accent-purple"></div>
-                        <div class="text-sm text-gray-400">Dr. Sarah Chen</div>
+                        <div class="text-sm text-slate-500">Dr. Sarah Chen</div>
                     </div>
                 </article>
 
                 <!-- Blog Card 6 -->
                 <article class="blog-card group">
-                    <div class="relative h-48 bg-gradient-to-br from-accent-purple/20 to-accent-blue/20 rounded-2xl overflow-hidden mb-6">
+                    <div class="relative h-48 bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl overflow-hidden mb-6">
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-12 h-12 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
                             </svg>
                         </div>
-                        <div class="absolute top-4 left-4 px-3 py-1 bg-primary/80 backdrop-blur rounded-full text-xs text-gray-300">Automation</div>
+                        <div class="absolute top-4 left-4 px-3 py-1 bg-white/80 backdrop-blur rounded-full text-xs text-slate-600">Automation</div>
                     </div>
-                    <div class="text-sm text-gray-400 mb-3">April 25, 2026</div>
-                    <h3 class="font-space text-xl font-bold mb-3 group-hover:text-accent-cyan transition-colors">
+                    <div class="text-sm text-slate-500 mb-3">April 25, 2026</div>
+                    <h3 class="font-inter text-xl font-bold mb-3 text-slate-900 group-hover:text-accent-blue transition-colors">
                         Security Best Practices for AI-Powered Automation
                     </h3>
-                    <p class="text-gray-400 text-sm mb-4">
+                    <p class="text-slate-500 text-sm mb-4">
                         Essential guidelines for implementing secure AI automation in your organization.
                     </p>
                     <div class="flex items-center gap-3">
                         <div class="w-8 h-8 rounded-full bg-gradient-to-br from-accent-cyan to-accent-blue"></div>
-                        <div class="text-sm text-gray-400">Security Team</div>
+                        <div class="text-sm text-slate-500">Security Team</div>
                     </div>
                 </article>
             </div>
 
             <!-- Load More -->
             <div class="text-center mt-12">
-                <button class="px-8 py-3 border border-white/20 rounded-xl hover:bg-white/5 transition-colors inline-flex items-center gap-2">
+                <button class="px-8 py-3 border border-slate-300 rounded-xl hover:bg-slate-50 transition-colors inline-flex items-center gap-2 text-slate-600">
                     Load More Articles
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
@@ -281,14 +304,14 @@
     </section>
 
     <!-- Newsletter Section -->
-    <section class="py-20 bg-secondary relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-r from-accent-purple/10 to-accent-cyan/10"></div>
+    <section class="py-20 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-50 to-purple-50"></div>
         <div class="max-w-3xl mx-auto px-6 lg:px-8 text-center relative">
-            <h2 class="font-space text-3xl md:text-4xl font-bold mb-4">Stay in the Loop</h2>
-            <p class="text-gray-400 mb-8">Get the latest insights on AI automation delivered to your inbox.</p>
+            <h2 class="font-inter text-3xl md:text-4xl font-bold mb-4 text-slate-900">Stay in the Loop</h2>
+            <p class="text-slate-500 mb-8">Get the latest insights on AI automation delivered to your inbox.</p>
             <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                <input type="email" placeholder="Enter your email" class="flex-1 px-6 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-accent-blue/50 transition-colors">
-                <button type="submit" class="px-8 py-3 bg-gradient-to-r from-accent-blue to-accent-cyan text-primary font-semibold rounded-xl hover:opacity-90 transition-all hover:scale-105">
+                <input type="email" placeholder="Enter your email" class="flex-1 px-6 py-3 bg-white border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:border-accent-blue transition-colors">
+                <button type="submit" class="px-8 py-3 bg-accent-blue text-white font-semibold rounded-xl hover:bg-accent-darker transition-all hover:scale-105">
                     Subscribe
                 </button>
             </form>
@@ -296,7 +319,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-16 border-t border-white/10">
+    <footer class="py-16 border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="grid md:grid-cols-5 gap-12">
                 <div class="md:col-span-2">
@@ -306,47 +329,47 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                             </svg>
                         </div>
-                        <span class="font-space font-bold text-xl">NEURONIX</span>
+                        <span class="font-inter font-bold text-xl">NEURONIX</span>
                     </a>
-                    <p class="text-gray-400 text-sm mb-6">Build the future with AI automation.</p>
+                    <p class="text-slate-500 text-sm mb-6">Build the future with AI automation.</p>
                     <div class="flex gap-4">
-                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-slate-200 transition-colors">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
                         </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-slate-200 transition-colors">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                         </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-slate-200 transition-colors">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                         </a>
                     </div>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Product</h4>
-                    <ul class="space-y-3 text-sm text-gray-400">
-                        <li><a href="features.html" class="hover:text-white transition-colors">Features</a></li>
-                        <li><a href="pricing.html" class="hover:text-white transition-colors">Pricing</a></li>
-                        <li><a href="integrations.html" class="hover:text-white transition-colors">Integrations</a></li>
+                    <h4 class="font-semibold mb-4 text-slate-900">Product</h4>
+                    <ul class="space-y-3 text-sm text-slate-500">
+                        <li><a href="features.html" class="hover:text-slate-900 transition-colors">Features</a></li>
+                        <li><a href="pricing.html" class="hover:text-slate-900 transition-colors">Pricing</a></li>
+                        <li><a href="integrations.html" class="hover:text-slate-900 transition-colors">Integrations</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Company</h4>
-                    <ul class="space-y-3 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-colors">About</a></li>
-                        <li><a href="blog.html" class="hover:text-white transition-colors">Blog</a></li>
-                        <li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li>
+                    <h4 class="font-semibold mb-4 text-slate-900">Company</h4>
+                    <ul class="space-y-3 text-sm text-slate-500">
+                        <li><a href="#" class="hover:text-slate-900 transition-colors">About</a></li>
+                        <li><a href="blog.html" class="hover:text-slate-900 transition-colors">Blog</a></li>
+                        <li><a href="contact.html" class="hover:text-slate-900 transition-colors">Contact</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Legal</h4>
-                    <ul class="space-y-3 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-colors">Privacy</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Terms</a></li>
+                    <h4 class="font-semibold mb-4 text-slate-900">Legal</h4>
+                    <ul class="space-y-3 text-sm text-slate-500">
+                        <li><a href="#" class="hover:text-slate-900 transition-colors">Privacy</a></li>
+                        <li><a href="#" class="hover:text-slate-900 transition-colors">Terms</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
-                <p class="text-sm text-gray-500">© 2026 NEURONIX AI. All rights reserved.</p>
+            <div class="mt-12 pt-8 border-t border-slate-100 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-sm text-slate-400">© 2026 NEURONIX AI. All rights reserved.</p>
             </div>
         </div>
     </footer>

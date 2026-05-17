@@ -171,11 +171,44 @@ function initScrollProgress() {
 
 function initNavigation() {
     const nav = document.querySelector('nav');
+    const burgerBtn = document.getElementById('burger-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
     let lastScroll = 0;
+    let menuOpen = false;
+
+    if (burgerBtn && mobileMenu) {
+        burgerBtn.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            if (menuOpen) {
+                mobileMenu.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+                burgerBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>';
+            } else {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = '';
+                burgerBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>';
+            }
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuOpen = false;
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = '';
+                burgerBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>';
+            });
+        });
+    }
 
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
-        
+        const isMobile = window.innerWidth < 768;
+
+        if (!isMobile) {
+            nav.style.transform = 'translateY(0)';
+            return;
+        }
+
         if (currentScroll > 100) {
             nav.classList.add('bg-primary/95');
             nav.classList.add('backdrop-blur-xl');

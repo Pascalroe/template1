@@ -6,7 +6,7 @@
     <title>Integrations - NEURONIX AI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
     <script>
@@ -14,13 +14,19 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#050505',
-                        secondary: '#111111',
-                        tertiary: '#1A1A1A',
-                        accent: { blue: '#4F8CFF', cyan: '#00D9FF', purple: '#8B5CF6' }
+                        primary: '#F8FAFC',
+                        secondary: '#FFFFFF',
+                        tertiary: '#F1F5F9',
+                        text: { dark: '#0F172A', medium: '#475569', light: '#94A3B8' },
+                        accent: {
+                            blue: '#2563EB',
+                            cyan: '#0EA5E9',
+                            purple: '#8B5CF6',
+                            light: '#DBEAFE',
+                            darker: '#1D4ED8'
+                        }
                     },
                     fontFamily: {
-                        space: ['Space Grotesk', 'sans-serif'],
                         inter: ['Inter', 'sans-serif']
                     }
                 }
@@ -28,9 +34,9 @@
         }
     </script>
 </head>
-<body class="bg-primary text-white font-inter overflow-x-hidden">
+<body class="bg-slate-50 text-slate-900 font-inter overflow-x-hidden">
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-primary/80 backdrop-blur-xl border-b border-white/5">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <a href="index.html" class="flex items-center gap-2">
@@ -39,37 +45,58 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                         </svg>
                     </div>
-                    <span class="font-space font-bold text-xl">NEURONIX</span>
+                    <span class="font-inter font-bold text-xl">NEURONIX</span>
                 </a>
                 <div class="hidden md:flex items-center gap-8">
-                    <a href="features.html" class="text-sm text-gray-400 hover:text-white transition-colors">Features</a>
-                    <a href="pricing.html" class="text-sm text-gray-400 hover:text-white transition-colors">Pricing</a>
-                    <a href="integrations.html" class="text-sm text-accent-cyan">Integrations</a>
-                    <a href="blog.html" class="text-sm text-gray-400 hover:text-white transition-colors">Blog</a>
-                    <a href="contact.html" class="text-sm text-gray-400 hover:text-white transition-colors">Contact</a>
+                    <a href="features.html" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Features</a>
+                    <a href="pricing.html" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Pricing</a>
+                    <a href="integrations.html" class="text-sm text-accent-blue font-medium">Integrations</a>
+                    <a href="blog.html" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Blog</a>
+                    <a href="contact.html" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Contact</a>
                 </div>
                 <div class="flex items-center gap-4">
-                    <a href="contact.html" class="px-4 py-2 text-sm font-medium bg-white text-primary rounded-lg hover:bg-gray-200 transition-colors">Get Started</a>
+                    <a href="contact.html" class="hidden sm:block text-sm text-slate-600 hover:text-slate-900 transition-colors">Sign In</a>
+                    <a href="contact.html" class="px-4 py-2 text-sm font-medium bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors">Get Started</a>
+                    <button id="burger-btn" class="md:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-slate-100 transition-colors" aria-label="Toggle menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path id="burger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
 
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl hidden md:hidden">
+        <div class="flex flex-col h-full pt-20 px-6">
+            <div class="flex flex-col gap-6">
+                <a href="features.html" class="text-lg text-slate-600 hover:text-slate-900 transition-colors py-2 border-b border-slate-200">Features</a>
+                <a href="pricing.html" class="text-lg text-slate-600 hover:text-slate-900 transition-colors py-2 border-b border-slate-200">Pricing</a>
+                <a href="integrations.html" class="text-lg text-accent-blue font-medium py-2 border-b border-slate-200">Integrations</a>
+                <a href="blog.html" class="text-lg text-slate-600 hover:text-slate-900 transition-colors py-2 border-b border-slate-200">Blog</a>
+                <a href="contact.html" class="text-lg text-slate-600 hover:text-slate-900 transition-colors py-2 border-b border-slate-200">Contact</a>
+            </div>
+            <div class="mt-auto pb-8">
+                <a href="contact.html" class="block w-full py-3 text-center bg-slate-900 text-white font-medium rounded-lg hover:bg-slate-800 transition-colors">Get Started</a>
+            </div>
+        </div>
+    </div>
+
     <!-- Hero -->
     <section class="pt-32 pb-16">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto">
-                <h1 class="font-space text-5xl md:text-6xl font-bold mb-6">Connect Everything with NEURONIX</h1>
-                <p class="text-xl text-gray-400">Seamlessly integrate with 50+ popular tools and services</p>
+                <h1 class="font-inter text-5xl md:text-6xl font-bold mb-6 text-slate-900">Connect Everything with NEURONIX</h1>
+                <p class="text-xl text-slate-500">Seamlessly integrate with 50+ popular tools and services</p>
             </div>
             
             <!-- Search -->
             <div class="max-w-xl mx-auto mt-10">
                 <div class="relative">
-                    <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                     </svg>
-                    <input type="text" placeholder="Search integrations..." class="w-full pl-12 pr-4 py-4 bg-secondary border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-accent-cyan/50 transition-colors">
+                    <input type="text" placeholder="Search integrations..." class="w-full pl-12 pr-4 py-4 bg-white border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:border-accent-blue transition-colors">
                 </div>
             </div>
         </div>
@@ -80,111 +107,111 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 <!-- Slack - Featured -->
-                <div class="md:col-span-2 lg:col-span-2 bg-gradient-to-br from-secondary to-tertiary rounded-3xl p-8 border border-white/10 hover:border-accent-purple/30 transition-colors">
+                <div class="md:col-span-2 lg:col-span-2 bg-white rounded-3xl p-8 border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all">
                     <div class="flex items-center justify-between mb-6">
                         <div class="w-14 h-14 rounded-2xl bg-[#4A154B] flex items-center justify-center">
                             <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zM15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>
                         </div>
-                        <span class="px-3 py-1 bg-accent-green/20 text-accent-green text-xs font-medium rounded-full">Popular</span>
+                        <span class="px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-medium rounded-full">Popular</span>
                     </div>
-                    <h3 class="font-space text-2xl font-bold mb-2">Slack</h3>
-                    <p class="text-gray-400 mb-4">Send messages, create channels, and trigger workflows from Slack commands.</p>
+                    <h3 class="font-inter text-2xl font-bold mb-2 text-slate-900">Slack</h3>
+                    <p class="text-slate-500 mb-4">Send messages, create channels, and trigger workflows from Slack commands.</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-white/5 text-sm rounded-lg">Notifications</span>
-                        <span class="px-3 py-1 bg-white/5 text-sm rounded-lg">Commands</span>
-                        <span class="px-3 py-1 bg-white/5 text-sm rounded-lg">Webhooks</span>
+                        <span class="px-3 py-1 bg-slate-100 text-sm rounded-lg text-slate-600">Notifications</span>
+                        <span class="px-3 py-1 bg-slate-100 text-sm rounded-lg text-slate-600">Commands</span>
+                        <span class="px-3 py-1 bg-slate-100 text-sm rounded-lg text-slate-600">Webhooks</span>
                     </div>
                 </div>
 
                 <!-- Zapier -->
-                <div class="bg-gradient-to-br from-secondary to-tertiary rounded-3xl p-8 border border-white/10 hover:border-accent-blue/30 transition-colors">
+                <div class="bg-white rounded-3xl p-8 border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all">
                     <div class="w-14 h-14 rounded-2xl bg-[#FF4A00] flex items-center justify-center mb-6">
                         <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-1.97 1.97a1.98 1.98 0 0 1-1.427.585c-.517 0-1.015-.197-1.427-.585l-2.131-2.13a1.96 1.96 0 0 0-2.672 0l-.707.707a.98.98 0 0 0 0 1.385l2.13 2.131c.388.388.908.584 1.427.584.517 0 1.015-.196 1.427-.584l1.97-1.97a1.98 1.98 0 0 1 1.427-.585c.517 0 1.015.197 1.427.585l.707.707a.98.98 0 0 0 1.385 0l.707-.707c.388-.388.584-.908.584-1.427 0-.517-.196-1.015-.584-1.427z"/></svg>
                     </div>
-                    <h3 class="font-space text-xl font-bold mb-2">Zapier</h3>
-                    <p class="text-gray-400 text-sm mb-4">Connect with 5,000+ apps through Zapier automation.</p>
+                    <h3 class="font-inter text-xl font-bold mb-2 text-slate-900">Zapier</h3>
+                    <p class="text-slate-500 text-sm mb-4">Connect with 5,000+ apps through Zapier automation.</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 bg-white/5 text-xs rounded-lg">5K+ Apps</span>
-                        <span class="px-2 py-1 bg-white/5 text-xs rounded-lg">Automation</span>
+                        <span class="px-2 py-1 bg-slate-100 text-xs rounded-lg text-slate-600">5K+ Apps</span>
+                        <span class="px-2 py-1 bg-slate-100 text-xs rounded-lg text-slate-600">Automation</span>
                     </div>
                 </div>
 
                 <!-- Notion -->
-                <div class="bg-gradient-to-br from-secondary to-tertiary rounded-3xl p-8 border border-white/10 hover:border-accent-cyan/30 transition-colors">
-                    <div class="w-14 h-14 rounded-2xl bg-white flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-primary" viewBox="0 0 24 24" fill="currentColor"><path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.98-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466l1.823 1.447zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.886l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952l1.448.327s0 .84-1.168.84l-3.22.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.14c-.093-.514.28-.886.747-.933l3.222-.186zM2.1 1.155l13.682-.933c1.682-.14 2.1.093 2.8.606l3.082 2.242c.56.42.746.933.746 1.54v15.177c0 1.026-.373 1.634-1.68 1.726l-15.458.934c-.98.047-1.448-.093-1.962-.747l-3.082-4.012C.88 17.082.747 16.43.747 15.823V2.948c0-.84.374-1.54 1.353-1.634z"/></svg>
+                <div class="bg-white rounded-3xl p-8 border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all">
+                    <div class="w-14 h-14 rounded-2xl bg-white border border-slate-200 flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-slate-900" viewBox="0 0 24 24" fill="currentColor"><path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.98-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466l1.823 1.447zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.886l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952l1.448.327s0 .84-1.168.84l-3.22.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.14c-.093-.514.28-.886.747-.933l3.222-.186zM2.1 1.155l13.682-.933c1.682-.14 2.1.093 2.8.606l3.082 2.242c.56.42.746.933.746 1.54v15.177c0 1.026-.373 1.634-1.68 1.726l-15.458.934c-.98.047-1.448-.093-1.962-.747l-3.082-4.012C.88 17.082.747 16.43.747 15.823V2.948c0-.84.374-1.54 1.353-1.634z"/></svg>
                     </div>
-                    <h3 class="font-space text-xl font-bold mb-2">Notion</h3>
-                    <p class="text-gray-400 text-sm mb-4">Sync data to Notion databases and pages.</p>
+                    <h3 class="font-inter text-xl font-bold mb-2 text-slate-900">Notion</h3>
+                    <p class="text-slate-500 text-sm mb-4">Sync data to Notion databases and pages.</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 bg-white/5 text-xs rounded-lg">Database</span>
-                        <span class="px-2 py-1 bg-white/5 text-xs rounded-lg">Sync</span>
+                        <span class="px-2 py-1 bg-slate-100 text-xs rounded-lg text-slate-600">Database</span>
+                        <span class="px-2 py-1 bg-slate-100 text-xs rounded-lg text-slate-600">Sync</span>
                     </div>
                 </div>
 
                 <!-- GitHub -->
-                <div class="bg-gradient-to-br from-secondary to-tertiary rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-colors">
+                <div class="bg-white rounded-3xl p-8 border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all">
                     <div class="w-14 h-14 rounded-2xl bg-[#24292E] flex items-center justify-center mb-6">
                         <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                     </div>
-                    <h3 class="font-space text-xl font-bold mb-2">GitHub</h3>
-                    <p class="text-gray-400 text-sm mb-4">Trigger workflows on commits and PRs.</p>
+                    <h3 class="font-inter text-xl font-bold mb-2 text-slate-900">GitHub</h3>
+                    <p class="text-slate-500 text-sm mb-4">Trigger workflows on commits and PRs.</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 bg-white/5 text-xs rounded-lg">CI/CD</span>
-                        <span class="px-2 py-1 bg-white/5 text-xs rounded-lg">Webhooks</span>
+                        <span class="px-2 py-1 bg-slate-100 text-xs rounded-lg text-slate-600">CI/CD</span>
+                        <span class="px-2 py-1 bg-slate-100 text-xs rounded-lg text-slate-600">Webhooks</span>
                     </div>
                 </div>
 
                 <!-- Salesforce -->
-                <div class="bg-gradient-to-br from-secondary to-tertiary rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-colors">
+                <div class="bg-white rounded-3xl p-8 border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all">
                     <div class="w-14 h-14 rounded-2xl bg-[#00A1E0] flex items-center justify-center mb-6">
                         <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M10.006 5.415a4.195 4.195 0 0 1 3.045-1.306c1.56 0 2.954.9 3.69 2.205.63-.3 1.35-.45 2.1-.45 2.85 0 5.159 2.37 5.159 5.295s-2.31 5.295-5.16 5.295c-.39 0-.75-.045-1.11-.12-.63 1.26-1.905 2.13-3.39 2.13-1.17 0-2.22-.54-2.925-1.38-.255.03-.51.045-.78.045C4.365 14.94 1.52 12.12.02 8.64c-.09-.21-.15-.435-.195-.66-.015-.06-.03-.12-.03-.18-.195-.87-.165-1.71.12-2.49.495-1.35 1.56-2.43 2.925-2.955.87-.33 1.83-.495 2.805-.39.6.06 1.17.195 1.71.39.63.225 1.17.54 1.635.945.06-.03.12-.075.195-.075.45 0 .84.285.969.72.045.15.06.3.06.45v.135l-.015.015-.015.015c-.12.255-.21.525-.285.795-.15.54-.195 1.095-.165 1.65l-.015.03zm2.925 4.365c-1.065 0-1.935-.855-1.935-1.905s.87-1.905 1.935-1.905c1.065 0 1.935.855 1.935 1.905s-.87 1.905-1.935 1.905zm4.065-4.665c-.405 0-.81-.075-1.185-.225-.915-.375-1.56-1.215-1.56-2.205 0-.45.12-.87.33-1.245.285-.51.72-.9 1.23-1.095.795-.3 1.665-.225 2.37.195.405.24.72.57.93.96.135.255.225.525.27.81.015.09.015.18.015.27v.045c0 .135-.03.255-.075.375-.135.375-.36.69-.63.915-.45.375-.99.57-1.545.57h-.135l-.015.015v-.015zm.645-1.155c.255 0 .48-.15.585-.39.09-.21.12-.45.09-.675-.03-.195-.12-.375-.24-.525-.18-.21-.42-.345-.69-.39-.21-.03-.435-.015-.645.045-.27.075-.51.24-.66.465-.12.18-.18.405-.165.63.015.21.09.405.21.585.18.255.435.435.72.48.21.03.435.015.645-.045.18-.06.345-.165.48-.3.015-.015.03-.015.045-.03.06-.06.105-.135.135-.21l.015-.015z"/></svg>
                     </div>
-                    <h3 class="font-space text-xl font-bold mb-2">Salesforce</h3>
-                    <p class="text-gray-400 text-sm mb-4">Sync leads and contacts automatically.</p>
+                    <h3 class="font-inter text-xl font-bold mb-2 text-slate-900">Salesforce</h3>
+                    <p class="text-slate-500 text-sm mb-4">Sync leads and contacts automatically.</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 bg-white/5 text-xs rounded-lg">CRM</span>
-                        <span class="px-2 py-1 bg-white/5 text-xs rounded-lg">Sync</span>
+                        <span class="px-2 py-1 bg-slate-100 text-xs rounded-lg text-slate-600">CRM</span>
+                        <span class="px-2 py-1 bg-slate-100 text-xs rounded-lg text-slate-600">Sync</span>
                     </div>
                 </div>
 
                 <!-- HubSpot -->
-                <div class="bg-gradient-to-br from-secondary to-tertiary rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-colors">
+                <div class="bg-white rounded-3xl p-8 border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all">
                     <div class="w-14 h-14 rounded-2xl bg-[#FF7A59] flex items-center justify-center mb-6">
                         <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18.164 7.93V5.084a2.198 2.198 0 001.267-1.984 2.2 2.2 0 00-4.4 0c0 .873.516 1.627 1.257 1.984v2.846a5.44 5.44 0 00-3.422 1.395l-6.195-4.803a2.627 2.627 0 00.084-.643 2.617 2.617 0 10-2.617 2.617c.52 0 .99-.156 1.392-.417l6.02 4.663a5.443 5.443 0 00-.49 2.495 5.44 5.44 0 002.823 4.636l-1.456 1.456a1.914 1.914 0 00-.535-.084 1.916 1.916 0 100 3.832 1.915 1.915 0 001.915-1.915c0-.08-.005-.158-.014-.235l1.17-1.17a5.44 5.44 0 104.623-8.83z"/></svg>
                     </div>
-                    <h3 class="font-space text-xl font-bold mb-2">HubSpot</h3>
-                    <p class="text-gray-400 text-sm mb-4">Marketing automation integration.</p>
+                    <h3 class="font-inter text-xl font-bold mb-2 text-slate-900">HubSpot</h3>
+                    <p class="text-slate-500 text-sm mb-4">Marketing automation integration.</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 bg-white/5 text-xs rounded-lg">Marketing</span>
-                        <span class="px-2 py-1 bg-white/5 text-xs rounded-lg">CRM</span>
+                        <span class="px-2 py-1 bg-slate-100 text-xs rounded-lg text-slate-600">Marketing</span>
+                        <span class="px-2 py-1 bg-slate-100 text-xs rounded-lg text-slate-600">CRM</span>
                     </div>
                 </div>
 
                 <!-- More integrations -->
                 <div class="md:col-span-3 lg:col-span-4 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                    <div class="bg-secondary rounded-xl p-4 border border-white/10 text-center hover:border-white/20 transition-colors">
+                    <div class="bg-white rounded-xl p-4 border border-slate-200 text-center hover:border-slate-300 hover:shadow-lg transition-all">
                         <div class="w-10 h-10 rounded-lg bg-[#0052CC] mx-auto mb-2 flex items-center justify-center text-white font-bold text-xs">A</div>
-                        <div class="text-sm">Atlassian</div>
+                        <div class="text-sm text-slate-600">Atlassian</div>
                     </div>
-                    <div class="bg-secondary rounded-xl p-4 border border-white/10 text-center hover:border-white/20 transition-colors">
+                    <div class="bg-white rounded-xl p-4 border border-slate-200 text-center hover:border-slate-300 hover:shadow-lg transition-all">
                         <div class="w-10 h-10 rounded-lg bg-[#4285F4] mx-auto mb-2 flex items-center justify-center text-white font-bold text-xs">G</div>
-                        <div class="text-sm">Google</div>
+                        <div class="text-sm text-slate-600">Google</div>
                     </div>
-                    <div class="bg-secondary rounded-xl p-4 border border-white/10 text-center hover:border-white/20 transition-colors">
+                    <div class="bg-white rounded-xl p-4 border border-slate-200 text-center hover:border-slate-300 hover:shadow-lg transition-all">
                         <div class="w-10 h-10 rounded-lg bg-[#0078D4] mx-auto mb-2 flex items-center justify-center text-white font-bold text-xs">O</div>
-                        <div class="text-sm">Office 365</div>
+                        <div class="text-sm text-slate-600">Office 365</div>
                     </div>
-                    <div class="bg-secondary rounded-xl p-4 border border-white/10 text-center hover:border-white/20 transition-colors">
+                    <div class="bg-white rounded-xl p-4 border border-slate-200 text-center hover:border-slate-300 hover:shadow-lg transition-all">
                         <div class="w-10 h-10 rounded-lg bg-[#2CA01C] mx-auto mb-2 flex items-center justify-center text-white font-bold text-xs">Q</div>
-                        <div class="text-sm">QuickBooks</div>
+                        <div class="text-sm text-slate-600">QuickBooks</div>
                     </div>
-                    <div class="bg-secondary rounded-xl p-4 border border-white/10 text-center hover:border-white/20 transition-colors">
+                    <div class="bg-white rounded-xl p-4 border border-slate-200 text-center hover:border-slate-300 hover:shadow-lg transition-all">
                         <div class="w-10 h-10 rounded-lg bg-[#635BFF] mx-auto mb-2 flex items-center justify-center text-white font-bold text-xs">S</div>
-                        <div class="text-sm">Stripe</div>
+                        <div class="text-sm text-slate-600">Stripe</div>
                     </div>
-                    <div class="bg-secondary rounded-xl p-4 border border-white/10 text-center hover:border-white/20 transition-colors flex items-center justify-center">
-                        <div class="text-accent-cyan text-sm">+44 more</div>
+                    <div class="bg-white rounded-xl p-4 border border-slate-200 flex items-center justify-center hover:border-slate-300 hover:shadow-lg transition-all">
+                        <div class="text-accent-blue text-sm">+44 more</div>
                     </div>
                 </div>
             </div>
@@ -192,59 +219,59 @@
     </section>
 
     <!-- API Section -->
-    <section class="py-24 bg-secondary">
+    <section class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div>
-                    <h2 class="font-space text-4xl font-bold mb-6">Build Custom Integrations</h2>
-                    <p class="text-gray-400 text-lg mb-8">Our REST API gives you full control to build custom integrations with any platform.</p>
+                    <h2 class="font-inter text-4xl font-bold mb-6 text-slate-900">Build Custom Integrations</h2>
+                    <p class="text-slate-500 text-lg mb-8">Our REST API gives you full control to build custom integrations with any platform.</p>
                     <div class="space-y-4">
                         <div class="flex items-start gap-4">
-                            <div class="w-6 h-6 rounded-full bg-accent-cyan/20 flex items-center justify-center mt-1">
-                                <svg class="w-4 h-4 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="w-6 h-6 rounded-full bg-accent-light flex items-center justify-center mt-1">
+                                <svg class="w-4 h-4 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                                 </svg>
                             </div>
                             <div>
-                                <h4 class="font-semibold mb-1">RESTful API</h4>
-                                <p class="text-sm text-gray-400">Simple, documented endpoints for all operations</p>
+                                <h4 class="font-semibold mb-1 text-slate-900">RESTful API</h4>
+                                <p class="text-sm text-slate-500">Simple, documented endpoints for all operations</p>
                             </div>
                         </div>
                         <div class="flex items-start gap-4">
-                            <div class="w-6 h-6 rounded-full bg-accent-cyan/20 flex items-center justify-center mt-1">
-                                <svg class="w-4 h-4 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="w-6 h-6 rounded-full bg-accent-light flex items-center justify-center mt-1">
+                                <svg class="w-4 h-4 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                                 </svg>
                             </div>
                             <div>
-                                <h4 class="font-semibold mb-1">Webhooks</h4>
-                                <p class="text-sm text-gray-400">Real-time event notifications</p>
+                                <h4 class="font-semibold mb-1 text-slate-900">Webhooks</h4>
+                                <p class="text-sm text-slate-500">Real-time event notifications</p>
                             </div>
                         </div>
                         <div class="flex items-start gap-4">
-                            <div class="w-6 h-6 rounded-full bg-accent-cyan/20 flex items-center justify-center mt-1">
-                                <svg class="w-4 h-4 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="w-6 h-6 rounded-full bg-accent-light flex items-center justify-center mt-1">
+                                <svg class="w-4 h-4 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                                 </svg>
                             </div>
                             <div>
-                                <h4 class="font-semibold mb-1">SDKs</h4>
-                                <p class="text-sm text-gray-400">Official SDKs for Python, Node, and more</p>
+                                <h4 class="font-semibold mb-1 text-slate-900">SDKs</h4>
+                                <p class="text-sm text-slate-500">Official SDKs for Python, Node, and more</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="bg-tertiary rounded-2xl p-6 border border-white/10">
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200">
                     <div class="flex items-center justify-between mb-4">
-                        <span class="text-sm text-gray-400">API Request Example</span>
-                        <span class="text-xs text-accent-cyan">cURL</span>
+                        <span class="text-sm text-slate-500">API Request Example</span>
+                        <span class="text-xs text-accent-blue">cURL</span>
                     </div>
-                    <div class="bg-primary rounded-xl p-4 font-mono text-sm overflow-x-auto">
-                        <div><span class="text-accent-purple">curl</span> <span class="text-accent-cyan">-X</span> <span class="text-white">POST</span></div>
-                        <div class="text-accent-green">https://api.neuronix.ai/v2/integrations</div>
-                        <div><span class="text-accent-purple">-H</span> <span class="text-accent-green">"Authorization: Bearer YOUR_KEY"</span></div>
-                        <div><span class="text-accent-purple">-H</span> <span class="text-accent-green">"Content-Type: application/json"</span></div>
-                        <div><span class="text-accent-purple">-d</span> <span class="text-accent-green">'{"type": "webhook", "url": "https://..."}'</span></div>
+                    <div class="bg-slate-900 rounded-xl p-4 font-mono text-sm overflow-x-auto">
+                        <div><span class="text-purple-400">curl</span> <span class="text-sky-400">-X</span> <span class="text-white">POST</span></div>
+                        <div class="text-emerald-400">https://api.neuronix.ai/v2/integrations</div>
+                        <div><span class="text-purple-400">-H</span> <span class="text-emerald-400">"Authorization: Bearer YOUR_KEY"</span></div>
+                        <div><span class="text-purple-400">-H</span> <span class="text-emerald-400">"Content-Type: application/json"</span></div>
+                        <div><span class="text-purple-400">-d</span> <span class="text-emerald-400">'{"type": "webhook", "url": "https://..."}'</span></div>
                     </div>
                 </div>
             </div>
@@ -254,14 +281,14 @@
     <!-- Request Integration -->
     <section class="py-24">
         <div class="max-w-3xl mx-auto px-6 lg:px-8 text-center">
-            <h2 class="font-space text-4xl font-bold mb-6">Don't See What You Need?</h2>
-            <p class="text-gray-400 text-lg mb-10">We continuously add new integrations. Let us know what you'd like to see next.</p>
-            <a href="contact.html" class="inline-block px-8 py-4 bg-gradient-to-r from-accent-blue to-accent-cyan text-primary font-semibold rounded-xl hover:opacity-90 transition-opacity">Request Integration</a>
+            <h2 class="font-inter text-4xl font-bold mb-6 text-slate-900">Don't See What You Need?</h2>
+            <p class="text-slate-500 text-lg mb-10">We continuously add new integrations. Let us know what you'd like to see next.</p>
+            <a href="contact.html" class="inline-block px-8 py-4 bg-accent-blue text-white font-semibold rounded-xl hover:bg-accent-darker transition-colors">Request Integration</a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-16 border-t border-white/10">
+    <footer class="py-16 border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="grid md:grid-cols-5 gap-12">
                 <div class="md:col-span-2">
@@ -271,34 +298,34 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                             </svg>
                         </div>
-                        <span class="font-space font-bold text-xl">NEURONIX</span>
+                        <span class="font-inter font-bold text-xl">NEURONIX</span>
                     </a>
-                    <p class="text-gray-400 text-sm">Build the future with AI automation.</p>
+                    <p class="text-slate-500 text-sm">Build the future with AI automation.</p>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Product</h4>
-                    <ul class="space-y-3 text-sm text-gray-400">
-                        <li><a href="features.html" class="hover:text-white transition-colors">Features</a></li>
-                        <li><a href="pricing.html" class="hover:text-white transition-colors">Pricing</a></li>
-                        <li><a href="integrations.html" class="hover:text-white transition-colors">Integrations</a></li>
+                    <h4 class="font-semibold mb-4 text-slate-900">Product</h4>
+                    <ul class="space-y-3 text-sm text-slate-500">
+                        <li><a href="features.html" class="hover:text-slate-900 transition-colors">Features</a></li>
+                        <li><a href="pricing.html" class="hover:text-slate-900 transition-colors">Pricing</a></li>
+                        <li><a href="integrations.html" class="hover:text-slate-900 transition-colors">Integrations</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Company</h4>
-                    <ul class="space-y-3 text-sm text-gray-400">
-                        <li><a href="blog.html" class="hover:text-white transition-colors">Blog</a></li>
-                        <li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li>
+                    <h4 class="font-semibold mb-4 text-slate-900">Company</h4>
+                    <ul class="space-y-3 text-sm text-slate-500">
+                        <li><a href="blog.html" class="hover:text-slate-900 transition-colors">Blog</a></li>
+                        <li><a href="contact.html" class="hover:text-slate-900 transition-colors">Contact</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Legal</h4>
-                    <ul class="space-y-3 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-colors">Privacy</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Terms</a></li>
+                    <h4 class="font-semibold mb-4 text-slate-900">Legal</h4>
+                    <ul class="space-y-3 text-sm text-slate-500">
+                        <li><a href="#" class="hover:text-slate-900 transition-colors">Privacy</a></li>
+                        <li><a href="#" class="hover:text-slate-900 transition-colors">Terms</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="mt-12 pt-8 border-t border-white/5 text-center text-sm text-gray-500">
+            <div class="mt-12 pt-8 border-t border-slate-100 text-center text-sm text-slate-400">
                 © 2026 NEURONIX AI. All rights reserved.
             </div>
         </div>

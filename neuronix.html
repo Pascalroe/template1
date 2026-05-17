@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEURONIX AI - Build the Future with AI Automation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#050505',
+                        secondary: '#111111',
+                        tertiary: '#1A1A1A',
+                        accent: { blue: '#4F8CFF', cyan: '#00D9FF', purple: '#8B5CF6', green: '#10B981' }
+                    },
+                    fontFamily: {
+                        space: ['Space Grotesk', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --primary: #050505;
+            --secondary: #111111;
+            --tertiary: #1A1A1A;
+            --accent-blue: #4F8CFF;
+            --accent-cyan: #00D9FF;
+            --accent-purple: #8B5CF6;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--primary); color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .font-space { font-family: 'Space Grotesk', sans-serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+        
+        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .glass-card:hover { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.15); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); }
+        
+        .glass-form { background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%); backdrop-filter: blur(24px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1); position: relative; overflow: hidden; }
+        .glass-input { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s ease; }
+        .glass-input:focus { background: rgba(255, 255, 255, 0.08); border-color: var(--accent-blue); box-shadow: 0 0 0 3px rgba(79, 140, 255, 0.15); }
+        
+        .blog-card { background: var(--secondary); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 1rem; padding: 1.5rem; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; }
+        .blog-card:hover { transform: translateY(-8px); border-color: rgba(79, 140, 255, 0.3); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 40px rgba(79, 140, 255, 0.1); }
+        
+        .category-btn { cursor: pointer; transition: all 0.3s ease; }
+        .category-btn.active, .category-btn:hover { background: rgba(79, 140, 255, 0.2) !important; color: var(--accent-cyan) !important; border-color: rgba(79, 140, 255, 0.4) !important; }
+        
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+        @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 20px rgba(79, 140, 255, 0.3); } 50% { box-shadow: 0 0 40px rgba(79, 140, 255, 0.5); } }
+        @keyframes gradient-shift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+        .animate-gradient { background-size: 200% 200%; animation: gradient-shift 8s ease infinite; }
+        
+        .gsap-reveal { opacity: 0; transform: translateY(40px); }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--primary); }
+        ::-webkit-scrollbar-thumb { background: var(--tertiary); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.2); }
+        
+        .page-section { display: none; }
+        .page-section.active { display: block; }
+        
+        .nav-link { position: relative; }
+        .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent-cyan); transition: width 0.3s ease; }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        
+        html.lenis { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    </style>
+</head>
+<body class="bg-primary text-white font-inter overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-primary/80 backdrop-blur-xl border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="#" class="flex items-center gap-2" onclick="navigateTo('home')">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-accent-blue via-accent-cyan to-accent-purple flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <span class="font-space font-bold text-xl">NEURONIX</span>
+                </a>
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="#" class="nav-link text-sm text-gray-400 hover:text-white transition-colors active" data-page="home" onclick="navigateTo('home')">Home</a>
+                    <a href="#" class="nav-link text-sm text-gray-400 hover:text-white transition-colors" data-page="features" onclick="navigateTo('features')">Features</a>
+                    <a href="#" class="nav-link text-sm text-gray-400 hover:text-white transition-colors" data-page="pricing" onclick="navigateTo('pricing')">Pricing</a>
+                    <a href="#" class="nav-link text-sm text-gray-400 hover:text-white transition-colors" data-page="integrations" onclick="navigateTo('integrations')">Integrations</a>
+                    <a href="#" class="nav-link text-sm text-gray-400 hover:text-white transition-colors" data-page="blog" onclick="navigateTo('blog')">Blog</a>
+                    <a href="#" class="nav-link text-sm text-gray-400 hover:text-white transition-colors" data-page="contact" onclick="navigateTo('contact')">Contact</a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="#" class="px-4 py-2 text-sm font-medium bg-white text-primary rounded-lg hover:bg-gray-200 transition-colors" onclick="navigateTo('contact')">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== HOME SECTION ==================== -->
+    <section id="home" class="page-section active pt-16">
+        <!-- Hero Section -->
+        <section class="relative min-h-screen flex items-center overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-accent-blue/5 via-transparent to-transparent"></div>
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-accent-blue/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-purple/10 rounded-full blur-3xl"></div>
+            
+            <div class="max-w-7xl mx-auto px-6 lg:px-8 py-24 relative w-full">
+                <div class="text-center max-w-4xl mx-auto">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8">
+                        <span class="w-2 h-2 rounded-full bg-accent-cyan animate-pulse"></span>
+                        <span class="text-sm text-gray-400">Now available in Public Beta</span>
+                    </div>
+                    <h1 class="font-space text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                        Build the Future<br>
+                        <span class="bg-gradient-to-r from-accent-blue via-accent-cyan to-accent-purple bg-clip-text text-transparent">with AI Automation</span>
+                    </h1>
+                    <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+                        Transform your workflow with intelligent automation. NEURONIX AI empowers teams to build, deploy, and scale AI solutions without writing a single line of code.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <a href="#" class="px-8 py-4 bg-gradient-to-r from-accent-blue to-accent-cyan text-primary font-semibold rounded-xl hover:opacity-90 transition-all hover:scale-105" onclick="navigateTo('contact')">Start Free Trial</a>
+                        <a href="#" class="px-8 py-4 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/5 transition-all" onclick="navigateTo('features')">View Demo</a>
+                    </div>
+                </div>
+
+                <!-- Dashboard Mockup -->
+                <div class="mt-20 relative">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent z-10"></div>
+                    <div class="rounded-2xl border border-white/10 bg-secondary overflow-hidden shadow-2xl">
+                        <div class="flex items-center gap-2 px-4 py-3 border-b border-white/10">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        </div>
+                        <div class="grid grid-cols-12 gap-0">
+                            <div class="col-span-2 bg-tertiary/50 p-4 border-r border-white/5">
+                                <div class="space-y-3">
+                                    <div class="h-8 bg-white/5 rounded-lg"></div>
+                                    <div class="h-4 w-20 bg-white/5 rounded"></div>
+                                    <div class="h-4 w-16 bg-white/5 rounded"></div>
+                                    <div class="h-4 w-20 bg-white/5 rounded"></div>
+                                </div>
+                            </div>
+                            <div class="col-span-10 p-6 space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <div class="h-8 w-48 bg-white/5 rounded-lg"></div>
+                                    <div class="flex gap-2">
+                                        <div class="h-8 w-20 bg-accent-blue/20 rounded-lg"></div>
+                                        <div class="h-8 w-20 bg-white/5 rounded-lg"></div>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-4 gap-4">
+                                    <div class="h-32 bg-gradient-to-br from-accent-blue/10 to-accent-purple/10 rounded-xl border border-white/5"></div>
+                                    <div class="h-32 bg-white/5 rounded-xl border border-white/5"></div>
+                                    <div class="h-32 bg-white/5 rounded-xl border border-white/5"></div>
+                                    <div class="h-32 bg-white/5 rounded-xl border border-white/5"></div>
+                                </div>
+                                <div class="h-64 bg-white/5 rounded-xl border border-white/5"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trusted By -->
+        <section class="py-16 border-y border-white/5">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <p class="text-center text-sm text-gray-500 mb-8">Trusted by innovative teams worldwide</p>
+                <div class="flex flex-wrap items-center justify-center gap-12 opacity-50">
+                    <div class="text-2xl font-space font-bold">ACME</div>
+                    <div class="text-2xl font-space font-bold">STRATUS</div>
+                    <div class="text-2xl font-space font-bold">NEXUS</div>
+                    <div class="text-2xl font-space font-bold">VECTOR</div>
+                    <div class="text-2xl font-space font-bold">QUANTUM</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Grid -->
+        <section class="py-24 relative">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="font-space text-4xl md:text-5xl font-bold mb-4">Powerful AI Features</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto">Everything you need to build intelligent workflows</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="md:col-span-2 bg-gradient-to-br from-secondary to-tertiary rounded-3xl p-8 border border-white/10 hover:border-accent-blue/30 transition-colors group">
+                        <div class="w-12 h-12 rounded-xl bg-accent-blue/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        </div>
+                        <h3 class="font-space text-2xl font-bold mb-2">Visual Workflow Builder</h3>
+                        <p class="text-gray-400">Design complex AI workflows with our intuitive drag-and-drop interface. No coding required.</p>
+                        <div class="mt-6 h-40 bg-white/5 rounded-xl border border-white/5"></div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-secondary to-tertiary rounded-3xl p-8 border border-white/10 hover:border-accent-cyan/30 transition-colors group">
+                        <div class="w-12 h-12 rounded-xl bg-accent-cyan/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        </div>
+                        <h3 class="font-space text-xl font-bold mb-2">Real-time Processing</h3>
+                        <p class="text-gray-400 text-sm">Process data instantly with sub-millisecond latency.</p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-secondary to-tertiary rounded-3xl p-8 border border-white/10 hover:border-accent-purple/30 transition-colors group">
+                        <div class="w-12 h-12 rounded-xl bg-accent-purple/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                        </div>
+                        <h3 class="font-space text-xl font-bold mb-2">Enterprise Security</h3>
+                        <p class="text-gray-400 text-sm">SOC 2 Type II certified with end-to-end encryption.</p>
+                    </div>
+                    
+                    <div class="md:col-span-2 bg-gradient-to-br from-secondary to-tertiary rounded-3xl p-8 border border-white/10 hover:border-accent-blue/30 transition-colors group">
+                        <div class="w-12 h-12 rounded-xl bg-accent-blue/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                        </div>
+                        <h3 class="font-space text-2xl font-bold mb-2">Team Collaboration</h3>
+                        <p class="text-gray-400">Work together in real-time with shared workspaces, comments, and version control.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="py-24 bg-secondary relative">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="font-space text-4xl md:text-5xl font-bold mb-4">How It Works</h2>
+                    <p class="text-gray-400">Get started in three simple steps</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="relative">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-blue to-accent-purple flex items-center justify-center text-2xl font-bold mb-6">1</div>
+                        <h3 class="font-space text-xl font-bold mb-2">Connect Your Data</h3>
+                        <p class="text-gray-400">Link your data sources with our one-click integrations. We support 50+ platforms.</p>
+                    </div>
+                    <div class="relative">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-blue to-accent-purple flex items-center justify-center text-2xl font-bold mb-6">2</div>
+                        <h3 class="font-space text-xl font-bold mb-2">Build Your Workflow</h3>
+                        <p class="text-gray-400">Use our visual builder to create AI-powered automations. Drag, drop, done.</p>
+                    </div>
+                    <div>
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-blue to-accent-purple flex items-center justify-center text-2xl font-bold mb-6">3</div>
+                        <h3 class="font-space text-xl font-bold mb-2">Deploy & Scale</h3>
+                        <p class="text-gray-400">Launch instantly and scale automatically. No infrastructure management needed.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="py-24">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="font-space text-4xl md:text-5xl font-bold mb-4">Loved by Teams</h2>
+                    <p class="text-gray-400">See what our customers have to say</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-secondary rounded-2xl p-8 border border-white/10">
+                        <div class="flex items-center gap-1 mb-4"><span class="text-accent-cyan">★★★★★</span></div>
+                        <p class="text-gray-300 mb-6">"NEURONIX transformed how we handle customer support. Our response time dropped by 80%."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-accent-blue to-accent-cyan"></div>
+                            <div><div class="font-semibold">Sarah Chen</div><div class="text-sm text-gray-400">CTO at TechFlow</div></div>
+                        </div>
+                    </div>
+                    <div class="bg-secondary rounded-2xl p-8 border border-white/10">
+                        <div class="flex items-center gap-1 mb-4"><span class="text-accent-cyan">★★★★★</span></div>
+                        <p class="text-gray-300 mb-6">"The visual workflow builder is incredible. We built our entire ML pipeline in a day."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-accent-purple to-accent-blue"></div>
+                            <div><div class="font-semibold">Marcus Johnson</div><div class="text-sm text-gray-400">Lead Engineer at DataCore</div></div>
+                        </div>
+                    </div>
+                    <div class="bg-secondary rounded-2xl p-8 border border-white/10">
+                        <div class="flex items-center gap-1 mb-4"><span class="text-accent-cyan">★★★★★</span></div>
+                        <p class="text-gray-300 mb-6">"Best AI platform we've used. The enterprise security features give us peace of mind."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-accent-cyan to-accent-purple"></div>
+                            <div><div class="font-semibold">Emily Rodriguez</div><div class="text-sm text-gray-400">VP Engineering at ScaleAI</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Preview -->
+        <section class="py-24 bg-secondary relative">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="font-space text-4xl md:text-5xl font-bold mb-4">Simple Pricing</h2>
+                    <p class="text-gray-400">Start free, scale as you grow</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    <div class="bg-tertiary rounded-2xl p-8 border border-white/10">
+                        <h3 class="font-space text-xl font-bold mb-2">Starter</h3>
+                        <div class="text-4xl font-bold mb-4">$0<span class="text-lg text-gray-400 font-normal">/mo</span></div>
+                        <p class="text-sm text-gray-400 mb-6">Perfect for individuals</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center gap-2 text-sm"><span class="text-accent-cyan">✓</span> 1,000 requests/month</li>
+                            <li class="flex items-center gap-2 text-sm"><span class="text-accent-cyan">✓</span> 5 workflows</li>
+                            <li class="flex items-center gap-2 text-sm"><span class="text-accent-cyan">✓</span> Community support</li>
+                        </ul>
+                        <a href="#" class="block text-center py-3 border border-white/20 rounded-xl hover:bg-white/5 transition-colors" onclick="navigateTo('contact')">Get Started</a>
+                    </div>
+                    
+                    <div class="bg-gradient-to-b from-accent-blue/10 to-accent-purple/10 rounded-2xl p-8 border border-accent-blue/30 relative">
+                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-accent-blue text-primary text-xs font-bold rounded-full">POPULAR</div>
+                        <h3 class="font-space text-xl font-bold mb-2">Pro</h3>
+                        <div class="text-4xl font-bold mb-4">$49<span class="text-lg text-gray-400 font-normal">/mo</span></div>
+                        <p class="text-sm text-gray-400 mb-6">For growing teams</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center gap-2 text-sm"><span class="text-accent-cyan">✓</span> 100,000 requests/month</li>
+                            <li class="flex items-center gap-2 text-sm"><span class="text-accent-cyan">✓</span> Unlimited workflows</li>
+                            <li class="flex items-center gap-2 text-sm"><span class="text-accent-cyan">✓</span> Priority support</li>
+                        </ul>
+                        <a href="#" class="block text-center py-3 bg-accent-blue text-primary font-semibold rounded-xl hover:opacity-90 transition-opacity" onclick="navigateTo('contact')">Start Free Trial</a>
+                    </div>
+                    
+                    <div class="bg-tertiary rounded-2xl p-8 border border-white/10">
+                        <h3 class="font-space text-xl font-bold mb-2">Enterprise</h3>
+                        <div class="text-4xl font-bold mb-4">Custom</div>
+                        <p class="text-sm text-gray-400 mb-6">For large organizations</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center gap-2 text-sm"><span class="text-accent-cyan">✓</span> Unlimited requests</li>
+                            <li class="flex items-center gap-2 text-sm"><span class="text-accent-cyan">✓</span> Custom integrations</li>
+                            <li class="flex items-center gap-2 text-sm"><span class="text-accent-cyan">✓</span> Dedicated support</li>
+                        </ul>
+                        <a href="#" class="block text-center py-3 border border-white/20 rounded-xl hover:bg-white/5 transition-colors" onclick="navigateTo('contact')">Contact Sales</a>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-12">
+                    <a href="#" class="inline-flex items-center gap-2 text-accent-cyan hover:underline" onclick="navigateTo('pricing')">View full pricing details <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="py-24">
+            <div class="max-w-3xl mx-auto px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="font-space text-4xl font-bold mb-4">Frequently Asked Questions</h2>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="bg-secondary rounded-xl border border-white/10 overflow-hidden">
+                        <button class="w-full flex items-center justify-between p-6 text-left" onclick="this.nextElementSibling.classList.toggle('hidden')">
+                            <span class="font-semibold">How does NEURONIX differ from other AI platforms?</span>
+                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div class="hidden px-6 pb-6 text-gray-400">NEURONIX focuses on ease of use without sacrificing power. Our visual workflow builder makes AI accessible to everyone.</div>
+                    </div>
+                    <div class="bg-secondary rounded-xl border border-white/10 overflow-hidden">
+                        <button class="w-full flex items-center justify-between p-6 text-left" onclick="this.nextElementSibling.classList.toggle('hidden')">
+                            <span class="font-semibold">Is my data secure?</span>
+                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div class="hidden px-6 pb-6 text-gray-400">Absolutely. We're SOC 2 Type II certified, GDPR compliant, and use end-to-end encryption.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="py-24 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-accent-blue/20 via-accent-purple/20 to-accent-cyan/20"></div>
+            <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center relative">
+                <h2 class="font-space text-4xl md:text-6xl font-bold mb-6">Ready to Build the Future?</h2>
+                <p class="text-xl text-gray-300 mb-10">Join thousands of teams already using NEURONIX to automate their workflows.</p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#" class="px-8 py-4 bg-white text-primary font-semibold rounded-xl hover:bg-gray-200 transition-colors" onclick="navigateTo('contact')">Start Free Trial</a>
+                    <a href="#" class="px-8 py-4 border border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 transition-colors" onclick="navigateTo('features')">Schedule Demo</a>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- ==================== FEATURES SECTION ==================== -->
+    <section id="features" class="page-section pt-16">
+        <section class="pt-16 pb-16">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h1 class="font-space text-5xl md:text-6xl font-bold mb-6">Powerful Features for Modern Teams</h1>
+                    <p class="text-xl text-gray-400">Everything you need to build, deploy, and scale AI solutions</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row gap-12">
+                    <aside class="lg:w-64 flex-shrink-0">
+                        <div class="lg:sticky lg:top-24 space-y-2">
+                            <a href="#" class="block px-4 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-colors" onclick="scrollToId('workflow')">Visual Workflow Builder</a>
+                            <a href="#" class="block px-4 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-colors" onclick="scrollToId('analytics')">Advanced Analytics</a>
+                            <a href="#" class="block px-4 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-colors" onclick="scrollToId('security')">Enterprise Security</a>
+                            <a href="#" class="block px-4 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-colors" onclick="scrollToId('api')">API & Integrations</a>
+                        </div>
+                    </aside>
+
+                    <div class="flex-1 space-y-24">
+                        <div id="workflow" class="scroll-mt-24">
+                            <div class="mb-8">
+                                <div class="w-14 h-14 rounded-2xl bg-accent-blue/20 flex items-center justify-center mb-6">
+                                    <svg class="w-7 h-7 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                </div>
+                                <h2 class="font-space text-3xl font-bold mb-4">Visual Workflow Builder</h2>
+                                <p class="text-gray-400 text-lg">Design complex AI automations with our intuitive drag-and-drop interface. No coding required.</p>
+                            </div>
+                            <div class="bg-secondary rounded-2xl border border-white/10 p-8">
+                                <div class="flex items-center gap-4 mb-8">
+                                    <div class="w-32 h-20 bg-accent-blue/20 rounded-xl border border-accent-blue/30 flex items-center justify-center"><svg class="w-8 h-8 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg></div>
+                                    <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                                    <div class="w-32 h-20 bg-accent-purple/20 rounded-xl border border-accent-purple/30 flex items-center justify-center"><svg class="w-8 h-8 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div>
+                                    <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                                    <div class="w-32 h-20 bg-accent-cyan/20 rounded-xl border border-accent-cyan/30 flex items-center justify-center"><svg class="w-8 h-8 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"/></svg></div>
+                                </div>
+                                <div class="grid grid-cols-4 gap-4">
+                                    <div class="bg-white/5 rounded-lg p-3 text-center text-sm text-gray-400">Trigger</div>
+                                    <div class="bg-white/5 rounded-lg p-3 text-center text-sm text-gray-400">Transform</div>
+                                    <div class="bg-white/5 rounded-lg p-3 text-center text-sm text-gray-400">AI Process</div>
+                                    <div class="bg-white/5 rounded-lg p-3 text-center text-sm text-gray-400">Output</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="analytics" class="scroll-mt-24">
+                            <div class="mb-8">
+                                <div class="w-14 h-14 rounded-2xl bg-accent-cyan/20 flex items-center justify-center mb-6">
+                                    <svg class="w-7 h-7 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                                </div>
+                                <h2 class="font-space text-3xl font-bold mb-4">Advanced Analytics</h2>
+                                <p class="text-gray-400 text-lg">Gain deep insights into your AI workflows with real-time monitoring.</p>
+                            </div>
+                            <div class="bg-secondary rounded-2xl border border-white/10 p-8">
+                                <div class="grid grid-cols-4 gap-4 mb-8">
+                                    <div class="bg-tertiary rounded-xl p-4"><div class="text-2xl font-bold text-accent-cyan">2.4M</div><div class="text-xs text-gray-400">Total Requests</div></div>
+                                    <div class="bg-tertiary rounded-xl p-4"><div class="text-2xl font-bold text-accent-blue">99.9%</div><div class="text-xs text-gray-400">Uptime</div></div>
+                                    <div class="bg-tertiary rounded-xl p-4"><div class="text-2xl font-bold text-accent-purple">23ms</div><div class="text-xs text-gray-400">Avg Latency</div></div>
+                                    <div class="bg-tertiary rounded-xl p-4"><div class="text-2xl font-bold text-accent-cyan">98.5%</div><div class="text-xs text-gray-400">Success Rate</div></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="security" class="scroll-mt-24">
+                            <div class="mb-8">
+                                <div class="w-14 h-14 rounded-2xl bg-accent-purple/20 flex items-center justify-center mb-6">
+                                    <svg class="w-7 h-7 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                                </div>
+                                <h2 class="font-space text-3xl font-bold mb-4">Enterprise Security</h2>
+                                <p class="text-gray-400 text-lg">Bank-level security with SOC 2 Type II certification.</p>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="bg-secondary rounded-2xl p-8 border border-white/10">
+                                    <div class="flex items-center gap-4 mb-4">
+                                        <div class="w-12 h-12 rounded-xl bg-accent-green/20 flex items-center justify-center"><svg class="w-6 h-6 text-accent-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+                                        <div><h4 class="font-semibold">SOC 2 Type II</h4><p class="text-sm text-gray-400">Certified</p></div>
+                                    </div>
+                                </div>
+                                <div class="bg-secondary rounded-2xl p-8 border border-white/10">
+                                    <div class="flex items-center gap-4 mb-4">
+                                        <div class="w-12 h-12 rounded-xl bg-accent-blue/20 flex items-center justify-center"><svg class="w-6 h-6 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div>
+                                        <div><h4 class="font-semibold">GDPR Compliant</h4><p class="text-sm text-gray-400">Data Protection</p></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- ==================== PRICING SECTION ==================== -->
+    <section id="pricing" class="page-section pt-16">
+        <section class="pt-16 pb-16">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h1 class="font-space text-5xl md:text-6xl font-bold mb-6">Simple, Transparent Pricing</h1>
+                    <p class="text-xl text-gray-400">Start free and scale as you grow.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    <div class="bg-secondary rounded-3xl p-8 border border-white/10">
+                        <div class="mb-6">
+                            <h3 class="font-space text-xl font-bold mb-2">Starter</h3>
+                            <p class="text-sm text-gray-400">Perfect for individuals</p>
+                        </div>
+                        <div class="mb-6"><span class="text-4xl font-bold">$0</span><span class="text-gray-400">/month</span></div>
+                        <a href="#" class="block w-full py-3 text-center border border-white/20 rounded-xl hover:bg-white/5 transition-colors mb-8" onclick="navigateTo('contact')">Get Started</a>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-3"><svg class="w-5 h-5 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm">1,000 requests/month</span></li>
+                            <li class="flex items-center gap-3"><svg class="w-5 h-5 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm">5 workflows</span></li>
+                            <li class="flex items-center gap-3"><svg class="w-5 h-5 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm">Community support</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-gradient-to-b from-accent-blue/10 to-accent-purple/10 rounded-3xl p-8 border border-accent-blue/30 relative transform scale-105">
+                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-accent-blue to-accent-cyan text-primary text-xs font-bold rounded-full">MOST POPULAR</div>
+                        <div class="mb-6">
+                            <h3 class="font-space text-xl font-bold mb-2">Pro</h3>
+                            <p class="text-sm text-gray-400">For growing teams</p>
+                        </div>
+                        <div class="mb-6"><span class="text-4xl font-bold">$49</span><span class="text-gray-400">/month</span></div>
+                        <a href="#" class="block w-full py-3 text-center bg-gradient-to-r from-accent-blue to-accent-cyan text-primary font-semibold rounded-xl hover:opacity-90 transition-opacity mb-8" onclick="navigateTo('contact')">Start Free Trial</a>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-3"><svg class="w-5 h-5 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm">100,000 requests/month</span></li>
+                            <li class="flex items-center gap-3"><svg class="w-5 h-5 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm">Unlimited workflows</span></li>
+                            <li class="flex items-center gap-3"><svg class="w-5 h-5 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm">Priority support</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-secondary rounded-3xl p-8 border border-white/10">
+                        <div class="mb-6">
+                            <h3 class="font-space text-xl font-bold mb-2">Enterprise</h3>
+                            <p class="text-sm text-gray-400">For large organizations</p>
+                        </div>
+                        <div class="mb-6"><span class="text-4xl font-bold">Custom</span></div>
+                        <a href="#" class="block w-full py-3 text-center border border-white/20 rounded-xl hover:bg-white/5 transition-colors mb-8" onclick="navigateTo('contact')">Contact Sales</a>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-3"><svg class="w-5 h-5 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm">Unlimited requests</span></li>
+                            <li class="flex items-center gap-3"><svg class="w-5 h-5 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm">Custom integrations</span></li>
+                            <li class="flex items-center gap-3"><svg class="w-5 h-5 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm">Dedicated support</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- ==================== INTEGRATIONS SECTION ==================== -->
+    <section id="integrations" class="page-section pt-16">
+        <section class="pt-16 pb-16">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h1 class="font-space text-5xl md:text-6xl font-bold mb-6">Connect Everything with NEURONIX</h1>
+                    <p class="text-xl text-gray-400">Seamlessly integrate with 50+ popular tools</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <div class="md:col-span-2 lg:col-span-2 bg-gradient-to-br from-secondary to-tertiary rounded-3xl p-8 border border-white/10 hover:border-accent-purple/30 transition-colors">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-[#4A154B] flex items-center justify-center"><svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/></svg></div>
+                            <span class="px-3 py-1 bg-accent-green/20 text-accent-green text-xs font-medium rounded-full">Popular</span>
+                        </div>
+                        <h3 class="font-space text-2xl font-bold mb-2">Slack</h3>
+                        <p class="text-gray-400 mb-4">Send messages, create channels, and trigger workflows.</p>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-secondary to-tertiary rounded-3xl p-8 border border-white/10">
+                        <div class="w-14 h-14 rounded-2xl bg-[#FF4A00] flex items-center justify-center mb-6"><svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0z"/></svg></div>
+                        <h3 class="font-space text-xl font-bold mb-2">Zapier</h3>
+                        <p class="text-gray-400 text-sm">Connect with 5,000+ apps.</p>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-secondary to-tertiary rounded-3xl p-8 border border-white/10">
+                        <div class="w-14 h-14 rounded-2xl bg-white flex items-center justify-center mb-6"><svg class="w-8 h-8 text-primary" viewBox="0 0 24 24" fill="currentColor"><path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.98-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466l1.823 1.447z"/></svg></div>
+                        <h3 class="font-space text-xl font-bold mb-2">Notion</h3>
+                        <p class="text-gray-400 text-sm">Sync data to databases.</p>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-secondary to-tertiary rounded-3xl p-8 border border-white/10">
+                        <div class="w-14 h-14 rounded-2xl bg-[#24292E] flex items-center justify-center mb-6"><svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></div>
+                        <h3 class="font-space text-xl font-bold mb-2">GitHub</h3>
+                        <p class="text-gray-400 text-sm">CI/CD automation.</p>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-secondary to-tertiary rounded-3xl p-8 border border-white/10">
+                        <div class="w-14 h-14 rounded-2xl bg-[#00A1E0] flex items-center justify-center mb-6"><svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M10.006 5.415a4.195 4.195 0 0 1 3.045-1.306c1.56 0 2.954.9 3.69 2.205.63-.3 1.35-.45 2.1-.45 2.85 0 5.159 2.37 5.159 5.295s-2.31 5.295-5.16 5.295c-.39 0-.75-.045-1.11-.12-.63 1.26-1.905 2.13-3.39 2.13-1.17 0-2.22-.54-2.925-1.38z"/></svg></div>
+                        <h3 class="font-space text-xl font-bold mb-2">Salesforce</h3>
+                        <p class="text-gray-400 text-sm">CRM integration.</p>
+                    </div>
+
+                    <div class="md:col-span-2 lg:col-span-2 bg-secondary rounded-xl p-4 border border-white/10 flex items-center justify-center">
+                        <span class="text-accent-cyan">+44 more integrations</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- ==================== BLOG SECTION ==================== -->
+    <section id="blog" class="page-section pt-16">
+        <section class="relative pt-16 pb-20 overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-accent-blue/5 via-transparent to-transparent"></div>
+            <div class="max-w-7xl mx-auto px-6 lg:px-8 relative">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h1 class="font-space text-5xl md:text-7xl font-bold mb-6 leading-tight">Latest<br><span class="bg-gradient-to-r from-accent-blue via-accent-cyan to-accent-purple bg-clip-text text-transparent">Insights</span></h1>
+                    <p class="text-xl text-gray-400 mb-10">Stay ahead with cutting-edge articles on AI automation.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="flex flex-wrap gap-4 mb-12">
+                    <button class="category-btn active px-4 py-2 rounded-full bg-accent-blue/20 text-accent-blue border border-accent-blue/30 text-sm font-medium">All Posts</button>
+                    <button class="category-btn px-4 py-2 rounded-full bg-white/5 text-gray-400 border border-white/10 text-sm font-medium">AI & ML</button>
+                    <button class="category-btn px-4 py-2 rounded-full bg-white/5 text-gray-400 border border-white/10 text-sm font-medium">Automation</button>
+                    <button class="category-btn px-4 py-2 rounded-full bg-white/5 text-gray-400 border border-white/10 text-sm font-medium">Product Updates</button>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <article class="blog-card group">
+                        <div class="relative h-48 bg-gradient-to-br from-accent-blue/20 to-accent-purple/20 rounded-2xl overflow-hidden mb-6">
+                            <div class="absolute top-4 left-4 px-3 py-1 bg-primary/80 backdrop-blur rounded-full text-xs text-gray-300">AI & ML</div>
+                        </div>
+                        <div class="text-sm text-gray-400 mb-3">May 10, 2026</div>
+                        <h3 class="font-space text-xl font-bold mb-3 group-hover:text-accent-cyan transition-colors">Building Scalable AI Pipelines</h3>
+                        <p class="text-gray-400 text-sm">Learn how to design and implement AI pipelines that handle millions of requests.</p>
+                    </article>
+
+                    <article class="blog-card group">
+                        <div class="relative h-48 bg-gradient-to-br from-accent-cyan/20 to-accent-blue/20 rounded-2xl overflow-hidden mb-6">
+                            <div class="absolute top-4 left-4 px-3 py-1 bg-primary/80 backdrop-blur rounded-full text-xs text-gray-300">Automation</div>
+                        </div>
+                        <div class="text-sm text-gray-400 mb-3">May 8, 2026</div>
+                        <h3 class="font-space text-xl font-bold mb-3 group-hover:text-accent-cyan transition-colors">Automating Customer Support</h3>
+                        <p class="text-gray-400 text-sm">How one company transformed their customer support operations.</p>
+                    </article>
+
+                    <article class="blog-card group">
+                        <div class="relative h-48 bg-gradient-to-br from-accent-purple/20 to-accent-cyan/20 rounded-2xl overflow-hidden mb-6">
+                            <div class="absolute top-4 left-4 px-3 py-1 bg-primary/80 backdrop-blur rounded-full text-xs text-gray-300">Product Updates</div>
+                        </div>
+                        <div class="text-sm text-gray-400 mb-3">May 5, 2026</div>
+                        <h3 class="font-space text-xl font-bold mb-3 group-hover:text-accent-cyan transition-colors">NEURONIX 3.0 Release</h3>
+                        <p class="text-gray-400 text-sm">Our biggest release brings revolutionary features.</p>
+                    </article>
+
+                    <article class="blog-card group">
+                        <div class="relative h-48 bg-gradient-to-br from-accent-blue/20 to-accent-cyan/20 rounded-2xl overflow-hidden mb-6">
+                            <div class="absolute top-4 left-4 px-3 py-1 bg-primary/80 backdrop-blur rounded-full text-xs text-gray-300">Case Studies</div>
+                        </div>
+                        <div class="text-sm text-gray-400 mb-3">May 3, 2026</div>
+                        <h3 class="font-space text-xl font-bold mb-3 group-hover:text-accent-cyan transition-colors">DataCore Reduced Processing by 90%</h3>
+                        <p class="text-gray-400 text-sm">How a leading company achieved unprecedented efficiency.</p>
+                    </article>
+
+                    <article class="blog-card group">
+                        <div class="relative h-48 bg-gradient-to-br from-accent-cyan/20 to-accent-purple/20 rounded-2xl overflow-hidden mb-6">
+                            <div class="absolute top-4 left-4 px-3 py-1 bg-primary/80 backdrop-blur rounded-full text-xs text-gray-300">AI & ML</div>
+                        </div>
+                        <div class="text-sm text-gray-400 mb-3">April 28, 2026</div>
+                        <h3 class="font-space text-xl font-bold mb-3 group-hover:text-accent-cyan transition-colors">Multi-Agent AI Systems</h3>
+                        <p class="text-gray-400 text-sm">How multiple AI agents are revolutionizing business processes.</p>
+                    </article>
+
+                    <article class="blog-card group">
+                        <div class="relative h-48 bg-gradient-to-br from-accent-purple/20 to-accent-blue/20 rounded-2xl overflow-hidden mb-6">
+                            <div class="absolute top-4 left-4 px-3 py-1 bg-primary/80 backdrop-blur rounded-full text-xs text-gray-300">Automation</div>
+                        </div>
+                        <div class="text-sm text-gray-400 mb-3">April 25, 2026</div>
+                        <h3 class="font-space text-xl font-bold mb-3 group-hover:text-accent-cyan transition-colors">Security Best Practices</h3>
+                        <p class="text-gray-400 text-sm">Essential guidelines for secure AI automation.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-secondary">
+            <div class="max-w-3xl mx-auto px-6 lg:px-8 text-center">
+                <h2 class="font-space text-3xl font-bold mb-4">Stay in the Loop</h2>
+                <p class="text-gray-400 mb-8">Get the latest insights on AI automation.</p>
+                <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                    <input type="email" placeholder="Enter your email" class="flex-1 px-6 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-accent-blue/50">
+                    <button type="submit" class="px-8 py-3 bg-gradient-to-r from-accent-blue to-accent-cyan text-primary font-semibold rounded-xl hover:opacity-90">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </section>
+
+    <!-- ==================== CONTACT SECTION ==================== -->
+    <section id="contact" class="page-section pt-16">
+        <section class="relative pt-16 pb-20 overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-accent-purple/5 via-transparent to-transparent"></div>
+            <div class="max-w-7xl mx-auto px-6 lg:px-8 relative">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h1 class="font-space text-5xl md:text-7xl font-bold mb-6 leading-tight">Get in<br><span class="bg-gradient-to-r from-accent-blue via-accent-cyan to-accent-purple bg-clip-text text-transparent">Touch</span></h1>
+                    <p class="text-xl text-gray-400">Have questions? We'd love to hear from you.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                    <div class="space-y-8">
+                        <div class="glass-card p-8 rounded-2xl">
+                            <div class="w-12 h-12 rounded-xl bg-accent-blue/20 flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            </div>
+                            <h3 class="font-space text-xl font-bold mb-2">Email Us</h3>
+                            <p class="text-gray-400 mb-4">For general inquiries</p>
+                            <a href="mailto:hello@neuronix.ai" class="text-accent-cyan hover:underline">hello@neuronix.ai</a>
+                        </div>
+
+                        <div class="glass-card p-8 rounded-2xl">
+                            <div class="w-12 h-12 rounded-xl bg-accent-cyan/20 flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            </div>
+                            <h3 class="font-space text-xl font-bold mb-2">Visit Us</h3>
+                            <p class="text-gray-400 mb-4">Our headquarters</p>
+                            <p class="text-white">548 Market St, Suite 72<br>San Francisco, CA 94104</p>
+                        </div>
+
+                        <div class="glass-card p-8 rounded-2xl">
+                            <div class="w-12 h-12 rounded-xl bg-accent-purple/20 flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            </div>
+                            <h3 class="font-space text-xl font-bold mb-2">Business Hours</h3>
+                            <p class="text-gray-400 mb-4">We're here to help</p>
+                            <p class="text-white">Mon - Fri: 9AM - 6PM PST</p>
+                        </div>
+                    </div>
+
+                    <div class="glass-form-container">
+                        <form class="glass-form p-8 rounded-2xl">
+                            <h3 class="font-space text-2xl font-bold mb-6">Send us a Message</h3>
+                            
+                            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                                <div><label class="block text-sm text-gray-400 mb-2">First Name</label><input type="text" placeholder="John" class="glass-input w-full px-4 py-3 rounded-xl text-white placeholder-gray-500"></div>
+                                <div><label class="block text-sm text-gray-400 mb-2">Last Name</label><input type="text" placeholder="Doe" class="glass-input w-full px-4 py-3 rounded-xl text-white placeholder-gray-500"></div>
+                            </div>
+                            
+                            <div class="form-group mb-6">
+                                <label class="block text-sm text-gray-400 mb-2">Email Address</label>
+                                <input type="email" placeholder="john@company.com" class="glass-input w-full px-4 py-3 rounded-xl text-white placeholder-gray-500">
+                            </div>
+                            
+                            <div class="form-group mb-6">
+                                <label class="block text-sm text-gray-400 mb-2">Company</label>
+                                <input type="text" placeholder="Your company" class="glass-input w-full px-4 py-3 rounded-xl text-white placeholder-gray-500">
+                            </div>
+                            
+                            <div class="form-group mb-6">
+                                <label class="block text-sm text-gray-400 mb-2">How can we help?</label>
+                                <select class="glass-input w-full px-4 py-3 rounded-xl text-white">
+                                    <option class="text-gray-500">Select a topic</option>
+                                    <option class="text-white">Sales Inquiry</option>
+                                    <option class="text-white">Technical Support</option>
+                                    <option class="text-white">Partnership</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group mb-6">
+                                <label class="block text-sm text-gray-400 mb-2">Message</label>
+                                <textarea rows="4" placeholder="Tell us about your project..." class="glass-input w-full px-4 py-3 rounded-xl text-white placeholder-gray-500 resize-none"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full py-4 bg-gradient-to-r from-accent-blue via-accent-cyan to-accent-purple text-primary font-semibold rounded-xl hover:opacity-90 transition-all">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 border-t border-white/10 mt-24">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-5 gap-12">
+                <div class="md:col-span-2">
+                    <a href="#" class="flex items-center gap-2 mb-4" onclick="navigateTo('home')">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-accent-blue via-accent-cyan to-accent-purple flex items-center justify-center">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        </div>
+                        <span class="font-space font-bold text-xl">NEURONIX</span>
+                    </a>
+                    <p class="text-gray-400 text-sm mb-6">Build the future with AI automation.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Product</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors" onclick="navigateTo('features')">Features</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors" onclick="navigateTo('pricing')">Pricing</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors" onclick="navigateTo('integrations')">Integrations</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Company</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors" onclick="navigateTo('blog')">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors" onclick="navigateTo('contact')">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-white/5 text-center text-sm text-gray-500">© 2026 NEURONIX AI. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script>
+        // SPA Router
+        function navigateTo(page) {
+            event.preventDefault();
+            
+            // Hide all sections
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(page).classList.add('active');
+            
+            // Update nav links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active', 'text-white');
+                link.classList.add('text-gray-400');
+            });
+            
+            const activeLink = document.querySelector(`[data-page="${page}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active', 'text-white');
+                activeLink.classList.remove('text-gray-400');
+            }
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Reinitialize animations
+            if (typeof gsap !== 'undefined') {
+                gsap.from('.page-section.active .gsap-reveal', {
+                    opacity: 0,
+                    y: 40,
+                    stagger: 0.1,
+                    duration: 0.8,
+                    ease: 'power2.out'
+                });
+            }
+        }
+        
+        // Scroll to element
+        function scrollToId(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        // Initialize Lenis smooth scroll
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            smooth: true
+        });
+        
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+        
+        // GSAP Animations on load
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof gsap !== 'undefined') {
+                gsap.from('.page-section.active > section:first-child', {
+                    opacity: 0,
+                    y: 30,
+                    duration: 1,
+                    ease: 'power2.out'
+                });
+            }
+        });
+    </script>
+</body>
+</html>

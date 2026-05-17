@@ -6,7 +6,7 @@
     <title>Pricing - NEURONIX AI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
     <script>
@@ -14,13 +14,19 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#050505',
-                        secondary: '#111111',
-                        tertiary: '#1A1A1A',
-                        accent: { blue: '#4F8CFF', cyan: '#00D9FF', purple: '#8B5CF6', green: '#10B981' }
+                        primary: '#F8FAFC',
+                        secondary: '#FFFFFF',
+                        tertiary: '#F1F5F9',
+                        text: { dark: '#0F172A', medium: '#475569', light: '#94A3B8' },
+                        accent: {
+                            blue: '#2563EB',
+                            cyan: '#0EA5E9',
+                            purple: '#8B5CF6',
+                            light: '#DBEAFE',
+                            darker: '#1D4ED8'
+                        }
                     },
                     fontFamily: {
-                        space: ['Space Grotesk', 'sans-serif'],
                         inter: ['Inter', 'sans-serif']
                     }
                 }
@@ -28,9 +34,9 @@
         }
     </script>
 </head>
-<body class="bg-primary text-white font-inter overflow-x-hidden">
+<body class="bg-slate-50 text-slate-900 font-inter overflow-x-hidden">
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-primary/80 backdrop-blur-xl border-b border-white/5">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <a href="index.html" class="flex items-center gap-2">
@@ -39,38 +45,59 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                         </svg>
                     </div>
-                    <span class="font-space font-bold text-xl">NEURONIX</span>
+                    <span class="font-inter font-bold text-xl">NEURONIX</span>
                 </a>
                 <div class="hidden md:flex items-center gap-8">
-                    <a href="features.html" class="text-sm text-gray-400 hover:text-white transition-colors">Features</a>
-                    <a href="pricing.html" class="text-sm text-accent-cyan">Pricing</a>
-                    <a href="integrations.html" class="text-sm text-gray-400 hover:text-white transition-colors">Integrations</a>
-                    <a href="blog.html" class="text-sm text-gray-400 hover:text-white transition-colors">Blog</a>
-                    <a href="contact.html" class="text-sm text-gray-400 hover:text-white transition-colors">Contact</a>
+                    <a href="features.html" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Features</a>
+                    <a href="pricing.html" class="text-sm text-accent-blue font-medium">Pricing</a>
+                    <a href="integrations.html" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Integrations</a>
+                    <a href="blog.html" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Blog</a>
+                    <a href="contact.html" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Contact</a>
                 </div>
                 <div class="flex items-center gap-4">
-                    <a href="contact.html" class="px-4 py-2 text-sm font-medium bg-white text-primary rounded-lg hover:bg-gray-200 transition-colors">Get Started</a>
+                    <a href="contact.html" class="hidden sm:block text-sm text-slate-600 hover:text-slate-900 transition-colors">Sign In</a>
+                    <a href="contact.html" class="px-4 py-2 text-sm font-medium bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors">Get Started</a>
+                    <button id="burger-btn" class="md:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-slate-100 transition-colors" aria-label="Toggle menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path id="burger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
 
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl hidden md:hidden">
+        <div class="flex flex-col h-full pt-20 px-6">
+            <div class="flex flex-col gap-6">
+                <a href="features.html" class="text-lg text-slate-600 hover:text-slate-900 transition-colors py-2 border-b border-slate-200">Features</a>
+                <a href="pricing.html" class="text-lg text-accent-blue font-medium py-2 border-b border-slate-200">Pricing</a>
+                <a href="integrations.html" class="text-lg text-slate-600 hover:text-slate-900 transition-colors py-2 border-b border-slate-200">Integrations</a>
+                <a href="blog.html" class="text-lg text-slate-600 hover:text-slate-900 transition-colors py-2 border-b border-slate-200">Blog</a>
+                <a href="contact.html" class="text-lg text-slate-600 hover:text-slate-900 transition-colors py-2 border-b border-slate-200">Contact</a>
+            </div>
+            <div class="mt-auto pb-8">
+                <a href="contact.html" class="block w-full py-3 text-center bg-slate-900 text-white font-medium rounded-lg hover:bg-slate-800 transition-colors">Get Started</a>
+            </div>
+        </div>
+    </div>
+
     <!-- Hero -->
     <section class="pt-32 pb-16">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto">
-                <h1 class="font-space text-5xl md:text-6xl font-bold mb-6">Simple, Transparent Pricing</h1>
-                <p class="text-xl text-gray-400">Start free and scale as you grow. No hidden fees.</p>
+                <h1 class="font-inter text-5xl md:text-6xl font-bold mb-6 text-slate-900">Simple, Transparent Pricing</h1>
+                <p class="text-xl text-slate-500">Start free and scale as you grow. No hidden fees.</p>
             </div>
             
             <!-- Billing Toggle -->
             <div class="flex items-center justify-center gap-4 mt-10">
-                <span class="text-sm text-gray-400" id="monthly-label">Monthly</span>
-                <button id="billing-toggle" class="w-14 h-8 bg-tertiary rounded-full relative transition-colors border border-white/10">
-                    <span id="toggle-dot" class="absolute left-1 top-1 w-6 h-6 bg-accent-cyan rounded-full transition-transform"></span>
+                <span class="text-sm text-slate-500" id="monthly-label">Monthly</span>
+                <button id="billing-toggle" w-14 h-8 bg-slate-200 rounded-full relative transition-colors border border-slate-300">
+                    <span id="toggle-dot" class="absolute left-1 top-1 w-6 h-6 bg-accent-blue rounded-full transition-transform"></span>
                 </button>
-                <span class="text-sm text-white" id="yearly-label">Yearly</span>
-                <span class="ml-2 px-3 py-1 bg-accent-green/20 text-accent-green text-xs font-medium rounded-full">Save 20%</span>
+                <span class="text-sm text-slate-900 font-medium" id="yearly-label">Yearly</span>
+                <span class="ml-2 px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-medium rounded-full">Save 20%</span>
             </div>
         </div>
     </section>
@@ -80,110 +107,110 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                 <!-- Starter -->
-                <div class="bg-secondary rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-colors">
+                <div class="bg-white rounded-3xl p-8 border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all">
                     <div class="mb-6">
-                        <h3 class="font-space text-xl font-bold mb-2">Starter</h3>
-                        <p class="text-sm text-gray-400">Perfect for individuals and small projects</p>
+                        <h3 class="font-inter text-xl font-bold mb-2 text-slate-900">Starter</h3>
+                        <p class="text-sm text-slate-500">Perfect for individuals and small projects</p>
                     </div>
                     <div class="mb-6">
-                        <span class="text-4xl font-bold" data-monthly="0" data-yearly="0">$0</span>
-                        <span class="text-gray-400">/month</span>
+                        <span class="text-4xl font-bold text-slate-900" data-monthly="0" data-yearly="0">$0</span>
+                        <span class="text-slate-500">/month</span>
                     </div>
-                    <a href="contact.html" class="block w-full py-3 text-center border border-white/20 rounded-xl hover:bg-white/5 transition-colors mb-8">Get Started</a>
+                    <a href="contact.html" class="block w-full py-3 text-center border border-slate-300 text-slate-700 rounded-xl hover:bg-slate-50 transition-colors mb-8">Get Started</a>
                     <ul class="space-y-4">
                         <li class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            <span class="text-sm">1,000 requests/month</span>
+                            <svg class="w-5 h-5 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-sm text-slate-600">1,000 requests/month</span>
                         </li>
                         <li class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            <span class="text-sm">5 active workflows</span>
+                            <svg class="w-5 h-5 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-sm text-slate-600">5 active workflows</span>
                         </li>
                         <li class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            <span class="text-sm">Community support</span>
+                            <svg class="w-5 h-5 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-sm text-slate-600">Community support</span>
                         </li>
                         <li class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            <span class="text-sm">Basic analytics</span>
+                            <svg class="w-5 h-5 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-sm text-slate-600">Basic analytics</span>
                         </li>
                     </ul>
                 </div>
 
                 <!-- Pro -->
-                <div class="bg-gradient-to-b from-accent-blue/10 to-accent-purple/10 rounded-3xl p-8 border border-accent-blue/30 relative transform scale-105">
-                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-accent-blue to-accent-cyan text-primary text-xs font-bold rounded-full">MOST POPULAR</div>
+                <div class="bg-white rounded-3xl p-8 border-2 border-accent-blue relative transform scale-105 shadow-xl">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-accent-blue text-white text-xs font-bold rounded-full">MOST POPULAR</div>
                     <div class="mb-6">
-                        <h3 class="font-space text-xl font-bold mb-2">Pro</h3>
-                        <p class="text-sm text-gray-400">For growing teams and businesses</p>
+                        <h3 class="font-inter text-xl font-bold mb-2 text-slate-900">Pro</h3>
+                        <p class="text-sm text-slate-500">For growing teams and businesses</p>
                     </div>
                     <div class="mb-6">
-                        <span class="text-4xl font-bold" data-monthly="49" data-yearly="39">$49</span>
-                        <span class="text-gray-400">/month</span>
+                        <span class="text-4xl font-bold text-slate-900" data-monthly="49" data-yearly="39">$49</span>
+                        <span class="text-slate-500">/month</span>
                     </div>
-                    <a href="contact.html" class="block w-full py-3 text-center bg-gradient-to-r from-accent-blue to-accent-cyan text-primary font-semibold rounded-xl hover:opacity-90 transition-opacity mb-8">Start Free Trial</a>
+                    <a href="contact.html" class="block w-full py-3 text-center bg-accent-blue text-white font-semibold rounded-xl hover:bg-accent-darker transition-colors mb-8">Start Free Trial</a>
                     <ul class="space-y-4">
                         <li class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            <span class="text-sm">100,000 requests/month</span>
+                            <svg class="w-5 h-5 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-sm text-slate-600">100,000 requests/month</span>
                         </li>
                         <li class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            <span class="text-sm">Unlimited workflows</span>
+                            <svg class="w-5 h-5 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-sm text-slate-600">Unlimited workflows</span>
                         </li>
                         <li class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            <span class="text-sm">Priority email support</span>
+                            <svg class="w-5 h-5 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-sm text-slate-600">Priority email support</span>
                         </li>
                         <li class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            <span class="text-sm">Advanced analytics</span>
+                            <svg class="w-5 h-5 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-sm text-slate-600">Advanced analytics</span>
                         </li>
                         <li class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            <span class="text-sm">Custom integrations</span>
+                            <svg class="w-5 h-5 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-sm text-slate-600">Custom integrations</span>
                         </li>
                         <li class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            <span class="text-sm">Team collaboration</span>
+                            <svg class="w-5 h-5 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-sm text-slate-600">Team collaboration</span>
                         </li>
                     </ul>
                 </div>
 
                 <!-- Enterprise -->
-                <div class="bg-secondary rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-colors">
+                <div class="bg-white rounded-3xl p-8 border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all">
                     <div class="mb-6">
-                        <h3 class="font-space text-xl font-bold mb-2">Enterprise</h3>
-                        <p class="text-sm text-gray-400">For large organizations with custom needs</p>
+                        <h3 class="font-inter text-xl font-bold mb-2 text-slate-900">Enterprise</h3>
+                        <p class="text-sm text-slate-500">For large organizations with custom needs</p>
                     </div>
                     <div class="mb-6">
-                        <span class="text-4xl font-bold">Custom</span>
+                        <span class="text-4xl font-bold text-slate-900">Custom</span>
                     </div>
-                    <a href="contact.html" class="block w-full py-3 text-center border border-white/20 rounded-xl hover:bg-white/5 transition-colors mb-8">Contact Sales</a>
+                    <a href="contact.html" class="block w-full py-3 text-center border border-slate-300 text-slate-700 rounded-xl hover:bg-slate-50 transition-colors mb-8">Contact Sales</a>
                     <ul class="space-y-4">
                         <li class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            <span class="text-sm">Unlimited requests</span>
+                            <svg class="w-5 h-5 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-sm text-slate-600">Unlimited requests</span>
                         </li>
                         <li class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            <span class="text-sm">Unlimited workflows</span>
+                            <svg class="w-5 h-5 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-sm text-slate-600">Unlimited workflows</span>
                         </li>
                         <li class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            <span class="text-sm">Dedicated support</span>
+                            <svg class="w-5 h-5 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-sm text-slate-600">Dedicated support</span>
                         </li>
                         <li class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            <span class="text-sm">Custom SLAs</span>
+                            <svg class="w-5 h-5 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-sm text-slate-600">Custom SLAs</span>
                         </li>
                         <li class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            <span class="text-sm">On-premise deployment</span>
+                            <svg class="w-5 h-5 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-sm text-slate-600">On-premise deployment</span>
                         </li>
                         <li class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            <span class="text-sm">Advanced security</span>
+                            <svg class="w-5 h-5 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-sm text-slate-600">Advanced security</span>
                         </li>
                     </ul>
                 </div>
@@ -192,61 +219,61 @@
     </section>
 
     <!-- Feature Comparison -->
-    <section class="py-24 bg-secondary">
+    <section class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <h2 class="font-space text-3xl font-bold text-center mb-12">Compare Plans</h2>
+            <h2 class="font-inter text-3xl font-bold text-center mb-12 text-slate-900">Compare Plans</h2>
             <div class="overflow-x-auto">
                 <table class="w-full">
                     <thead>
-                        <tr class="border-b border-white/10">
-                            <th class="text-left py-4 px-4 text-gray-400 font-medium">Feature</th>
-                            <th class="text-center py-4 px-4 text-gray-400 font-medium">Starter</th>
-                            <th class="text-center py-4 px-4 text-accent-cyan font-medium">Pro</th>
-                            <th class="text-center py-4 px-4 text-gray-400 font-medium">Enterprise</th>
+                        <tr class="border-b border-slate-200">
+                            <th class="text-left py-4 px-4 text-slate-500 font-medium">Feature</th>
+                            <th class="text-center py-4 px-4 text-slate-500 font-medium">Starter</th>
+                            <th class="text-center py-4 px-4 text-accent-blue font-medium">Pro</th>
+                            <th class="text-center py-4 px-4 text-slate-500 font-medium">Enterprise</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="border-b border-white/5">
-                            <td class="py-4 px-4">Monthly Requests</td>
-                            <td class="text-center py-4 px-4">1,000</td>
-                            <td class="text-center py-4 px-4 text-accent-cyan">100,000</td>
-                            <td class="text-center py-4 px-4">Unlimited</td>
+                        <tr class="border-b border-slate-100">
+                            <td class="py-4 px-4 text-slate-600">Monthly Requests</td>
+                            <td class="text-center py-4 px-4 text-slate-600">1,000</td>
+                            <td class="text-center py-4 px-4 text-accent-blue font-medium">100,000</td>
+                            <td class="text-center py-4 px-4 text-slate-600">Unlimited</td>
                         </tr>
-                        <tr class="border-b border-white/5">
-                            <td class="py-4 px-4">Active Workflows</td>
-                            <td class="text-center py-4 px-4">5</td>
-                            <td class="text-center py-4 px-4 text-accent-cyan">Unlimited</td>
-                            <td class="text-center py-4 px-4">Unlimited</td>
+                        <tr class="border-b border-slate-100">
+                            <td class="py-4 px-4 text-slate-600">Active Workflows</td>
+                            <td class="text-center py-4 px-4 text-slate-600">5</td>
+                            <td class="text-center py-4 px-4 text-accent-blue font-medium">Unlimited</td>
+                            <td class="text-center py-4 px-4 text-slate-600">Unlimited</td>
                         </tr>
-                        <tr class="border-b border-white/5">
-                            <td class="py-4 px-4">Team Members</td>
-                            <td class="text-center py-4 px-4">1</td>
-                            <td class="text-center py-4 px-4 text-accent-cyan">10</td>
-                            <td class="text-center py-4 px-4">Unlimited</td>
+                        <tr class="border-b border-slate-100">
+                            <td class="py-4 px-4 text-slate-600">Team Members</td>
+                            <td class="text-center py-4 px-4 text-slate-600">1</td>
+                            <td class="text-center py-4 px-4 text-accent-blue font-medium">10</td>
+                            <td class="text-center py-4 px-4 text-slate-600">Unlimited</td>
                         </tr>
-                        <tr class="border-b border-white/5">
-                            <td class="py-4 px-4">API Access</td>
-                            <td class="text-center py-4 px-4"><span class="text-gray-500">—</span></td>
-                            <td class="text-center py-4 px-4 text-accent-cyan">✓</td>
-                            <td class="text-center py-4 px-4">✓</td>
+                        <tr class="border-b border-slate-100">
+                            <td class="py-4 px-4 text-slate-600">API Access</td>
+                            <td class="text-center py-4 px-4"><span class="text-slate-300">—</span></td>
+                            <td class="text-center py-4 px-4 text-accent-blue font-medium">✓</td>
+                            <td class="text-center py-4 px-4 text-slate-600">✓</td>
                         </tr>
-                        <tr class="border-b border-white/5">
-                            <td class="py-4 px-4">Custom Integrations</td>
-                            <td class="text-center py-4 px-4"><span class="text-gray-500">—</span></td>
-                            <td class="text-center py-4 px-4 text-accent-cyan">✓</td>
-                            <td class="text-center py-4 px-4">✓</td>
+                        <tr class="border-b border-slate-100">
+                            <td class="py-4 px-4 text-slate-600">Custom Integrations</td>
+                            <td class="text-center py-4 px-4"><span class="text-slate-300">—</span></td>
+                            <td class="text-center py-4 px-4 text-accent-blue font-medium">✓</td>
+                            <td class="text-center py-4 px-4 text-slate-600">✓</td>
                         </tr>
-                        <tr class="border-b border-white/5">
-                            <td class="py-4 px-4">SSO / SAML</td>
-                            <td class="text-center py-4 px-4"><span class="text-gray-500">—</span></td>
-                            <td class="text-center py-4 px-4"><span class="text-gray-500">—</span></td>
-                            <td class="text-center py-4 px-4">✓</td>
+                        <tr class="border-b border-slate-100">
+                            <td class="py-4 px-4 text-slate-600">SSO / SAML</td>
+                            <td class="text-center py-4 px-4"><span class="text-slate-300">—</span></td>
+                            <td class="text-center py-4 px-4"><span class="text-slate-300">—</span></td>
+                            <td class="text-center py-4 px-4 text-slate-600">✓</td>
                         </tr>
-                        <tr class="border-b border-white/5">
-                            <td class="py-4 px-4">On-premise</td>
-                            <td class="text-center py-4 px-4"><span class="text-gray-500">—</span></td>
-                            <td class="text-center py-4 px-4"><span class="text-gray-500">—</span></td>
-                            <td class="text-center py-4 px-4">✓</td>
+                        <tr class="border-b border-slate-100">
+                            <td class="py-4 px-4 text-slate-600">On-premise</td>
+                            <td class="text-center py-4 px-4"><span class="text-slate-300">—</span></td>
+                            <td class="text-center py-4 px-4"><span class="text-slate-300">—</span></td>
+                            <td class="text-center py-4 px-4 text-slate-600">✓</td>
                         </tr>
                     </tbody>
                 </table>
@@ -257,49 +284,49 @@
     <!-- FAQ -->
     <section class="py-24">
         <div class="max-w-3xl mx-auto px-6 lg:px-8">
-            <h2 class="font-space text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+            <h2 class="font-inter text-3xl font-bold text-center mb-12 text-slate-900">Frequently Asked Questions</h2>
             <div class="space-y-4">
-                <div class="bg-secondary rounded-xl border border-white/10 overflow-hidden">
+                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
                     <button class="w-full flex items-center justify-between p-6 text-left" onclick="this.nextElementSibling.classList.toggle('hidden')">
-                        <span class="font-semibold">Can I change plans at any time?</span>
-                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <span class="font-semibold text-slate-900">Can I change plans at any time?</span>
+                        <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                         </svg>
                     </button>
-                    <div class="hidden px-6 pb-6 text-gray-400">
+                    <div class="hidden px-6 pb-6 text-slate-500">
                         Yes! You can upgrade or downgrade your plan at any time. When upgrading, you'll get immediate access to new features. When downgrading, changes take effect at the end of your billing cycle.
                     </div>
                 </div>
-                <div class="bg-secondary rounded-xl border border-white/10 overflow-hidden">
+                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
                     <button class="w-full flex items-center justify-between p-6 text-left" onclick="this.nextElementSibling.classList.toggle('hidden')">
-                        <span class="font-semibold">What happens if I exceed my request limit?</span>
-                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <span class="font-semibold text-slate-900">What happens if I exceed my request limit?</span>
+                        <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                         </svg>
                     </button>
-                    <div class="hidden px-6 pb-6 text-gray-400">
+                    <div class="hidden px-6 pb-6 text-slate-500">
                         We'll notify you when you're approaching your limit. If you exceed it, your workflows will continue to run, but you'll be charged for overage at $0.001 per request. You can set up alerts to prevent unexpected charges.
                     </div>
                 </div>
-                <div class="bg-secondary rounded-xl border border-white/10 overflow-hidden">
+                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
                     <button class="w-full flex items-center justify-between p-6 text-left" onclick="this.nextElementSibling.classList.toggle('hidden')">
-                        <span class="font-semibold">Do you offer a free trial?</span>
-                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <span class="font-semibold text-slate-900">Do you offer a free trial?</span>
+                        <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                         </svg>
                     </button>
-                    <div class="hidden px-6 pb-6 text-gray-400">
+                    <div class="hidden px-6 pb-6 text-slate-500">
                         Yes! The Pro plan comes with a 14-day free trial. No credit card required. You'll have full access to all Pro features during the trial period.
                     </div>
                 </div>
-                <div class="bg-secondary rounded-xl border border-white/10 overflow-hidden">
+                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
                     <button class="w-full flex items-center justify-between p-6 text-left" onclick="this.nextElementSibling.classList.toggle('hidden')">
-                        <span class="font-semibold">What payment methods do you accept?</span>
-                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <span class="font-semibold text-slate-900">What payment methods do you accept?</span>
+                        <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                         </svg>
                     </button>
-                    <div class="hidden px-6 pb-6 text-gray-400">
+                    <div class="hidden px-6 pb-6 text-slate-500">
                         We accept all major credit cards (Visa, Mastercard, American Express), PayPal, and wire transfers for Enterprise plans. We also support billing in multiple currencies.
                     </div>
                 </div>
@@ -308,20 +335,20 @@
     </section>
 
     <!-- CTA -->
-    <section class="py-24 bg-secondary relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-r from-accent-blue/10 to-accent-purple/10"></div>
+    <section class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-50 to-purple-50"></div>
         <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center relative">
-            <h2 class="font-space text-4xl font-bold mb-6">Still have questions?</h2>
-            <p class="text-xl text-gray-300 mb-10">Our team is here to help you choose the right plan.</p>
+            <h2 class="font-inter text-4xl font-bold mb-6 text-slate-900">Still have questions?</h2>
+            <p class="text-xl text-slate-500 mb-10">Our team is here to help you choose the right plan.</p>
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="contact.html" class="px-8 py-4 bg-white text-primary font-semibold rounded-xl hover:bg-gray-200 transition-colors">Contact Sales</a>
-                <a href="features.html" class="px-8 py-4 border border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 transition-colors">Learn More</a>
+                <a href="contact.html" class="px-8 py-4 bg-slate-900 text-white font-semibold rounded-xl hover:bg-slate-800 transition-colors">Contact Sales</a>
+                <a href="features.html" class="px-8 py-4 border border-slate-300 text-slate-700 font-semibold rounded-xl hover:bg-slate-50 transition-colors">Learn More</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-16 border-t border-white/10">
+    <footer class="py-16 border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="grid md:grid-cols-5 gap-12">
                 <div class="md:col-span-2">
@@ -331,34 +358,34 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                             </svg>
                         </div>
-                        <span class="font-space font-bold text-xl">NEURONIX</span>
+                        <span class="font-inter font-bold text-xl">NEURONIX</span>
                     </a>
-                    <p class="text-gray-400 text-sm">Build the future with AI automation.</p>
+                    <p class="text-slate-500 text-sm">Build the future with AI automation.</p>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Product</h4>
-                    <ul class="space-y-3 text-sm text-gray-400">
-                        <li><a href="features.html" class="hover:text-white transition-colors">Features</a></li>
-                        <li><a href="pricing.html" class="hover:text-white transition-colors">Pricing</a></li>
-                        <li><a href="integrations.html" class="hover:text-white transition-colors">Integrations</a></li>
+                    <h4 class="font-semibold mb-4 text-slate-900">Product</h4>
+                    <ul class="space-y-3 text-sm text-slate-500">
+                        <li><a href="features.html" class="hover:text-slate-900 transition-colors">Features</a></li>
+                        <li><a href="pricing.html" class="hover:text-slate-900 transition-colors">Pricing</a></li>
+                        <li><a href="integrations.html" class="hover:text-slate-900 transition-colors">Integrations</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Company</h4>
-                    <ul class="space-y-3 text-sm text-gray-400">
-                        <li><a href="blog.html" class="hover:text-white transition-colors">Blog</a></li>
-                        <li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li>
+                    <h4 class="font-semibold mb-4 text-slate-900">Company</h4>
+                    <ul class="space-y-3 text-sm text-slate-500">
+                        <li><a href="blog.html" class="hover:text-slate-900 transition-colors">Blog</a></li>
+                        <li><a href="contact.html" class="hover:text-slate-900 transition-colors">Contact</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Legal</h4>
-                    <ul class="space-y-3 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-colors">Privacy</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Terms</a></li>
+                    <h4 class="font-semibold mb-4 text-slate-900">Legal</h4>
+                    <ul class="space-y-3 text-sm text-slate-500">
+                        <li><a href="#" class="hover:text-slate-900 transition-colors">Privacy</a></li>
+                        <li><a href="#" class="hover:text-slate-900 transition-colors">Terms</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="mt-12 pt-8 border-t border-white/5 text-center text-sm text-gray-500">
+            <div class="mt-12 pt-8 border-t border-slate-100 text-center text-sm text-slate-400">
                 © 2026 NEURONIX AI. All rights reserved.
             </div>
         </div>
