@@ -363,9 +363,14 @@ textarea:invalid:not(:placeholder-shown) {
     #burger-btn {
         display: flex;
         z-index: 50;
+        width: 48px;
+        height: 48px;
+        align-items: center;
+        justify-content: center;
     }
 
     #mobile-menu {
+        padding-top: 6rem;
         animation: slideIn 0.3s ease-out;
     }
 
@@ -398,12 +403,33 @@ textarea:invalid:not(:placeholder-shown) {
     #mobile-menu a {
         font-size: 1.25rem;
         padding: 0.75rem 0;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
         transition: all 0.2s ease;
     }
 
     #mobile-menu a:hover {
         color: var(--accent);
         padding-left: 0.5rem;
+    }
+
+    .faq-item button {
+        min-height: 48px;
+        padding: 1rem;
+    }
+
+    button[type="submit"],
+    .form-container button,
+    [class*="bg-gradient-to-r"][class*="rounded-xl"] button {
+        min-height: 48px;
+    }
+
+    a[class*="px-"],
+    a[class*="py-"] {
+        min-height: 48px;
+        display: inline-flex;
+        align-items: center;
     }
 }
 
