@@ -124,41 +124,121 @@
                 </div>
             </div>
 
-            <!-- Dashboard Mockup -->
-            <div class="mt-20 relative">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-50 via-transparent to-transparent z-10"></div>
-                <div class="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-xl">
-                    <div class="flex items-center gap-2 px-4 py-3 border-b border-slate-100">
-                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                    </div>
-                    <div class="grid grid-cols-12 gap-0">
-                        <!-- Sidebar -->
-                        <div class="col-span-2 bg-slate-50 p-4 border-r border-slate-100">
-                            <div class="space-y-3">
-                                <div class="h-8 bg-slate-200 rounded-lg"></div>
-                                <div class="h-4 w-20 bg-slate-200 rounded"></div>
-                                <div class="h-4 w-16 bg-slate-200 rounded"></div>
-                                <div class="h-4 w-20 bg-slate-200 rounded"></div>
-                            </div>
+            <!-- Dashboard Preview -->
+            <div class="mt-20">
+                <div class="text-center mb-8">
+                    <span class="inline-block px-4 py-1.5 bg-gradient-to-r from-accent-blue/10 to-accent-cyan/10 border border-accent-blue/20 rounded-full text-sm font-medium text-accent-blue mb-4">Your Command Center</span>
+                </div>
+                <div class="relative">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-50 via-transparent to-transparent z-10"></div>
+                    <div class="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-2xl">
+                        <!-- Window Controls -->
+                        <div class="flex items-center gap-2 px-4 py-3 border-b border-slate-100">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            <span class="ml-3 text-xs text-slate-400">NEURONIX Dashboard</span>
                         </div>
-                        <!-- Main Content -->
-                        <div class="col-span-10 p-6 space-y-4">
-                            <div class="flex items-center justify-between">
-                                <div class="h-8 w-48 bg-slate-100 rounded-lg"></div>
-                                <div class="flex gap-2">
-                                    <div class="h-8 w-20 bg-blue-100 rounded-lg"></div>
-                                    <div class="h-8 w-20 bg-slate-100 rounded-lg"></div>
+                        <div class="grid grid-cols-12 gap-0">
+                            <!-- Sidebar -->
+                            <div class="col-span-2 bg-slate-900 p-4">
+                                <div class="flex items-center gap-2 mb-6">
+                                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-accent-blue to-accent-cyan flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                    </div>
+                                    <span class="font-bold text-white">NEURONIX</span>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="h-8 bg-slate-800 rounded-lg flex items-center px-3">
+                                        <div class="w-4 h-4 rounded bg-accent-blue mr-3"></div>
+                                        <div class="h-2 w-16 bg-slate-600 rounded"></div>
+                                    </div>
+                                    <div class="h-6 bg-transparent rounded flex items-center px-3">
+                                        <div class="h-2 w-12 bg-slate-700 rounded"></div>
+                                    </div>
+                                    <div class="h-6 bg-transparent rounded flex items-center px-3">
+                                        <div class="h-2 w-14 bg-slate-700 rounded"></div>
+                                    </div>
+                                    <div class="h-6 bg-transparent rounded flex items-center px-3">
+                                        <div class="h-2 w-10 bg-slate-700 rounded"></div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="grid grid-cols-4 gap-4">
-                                <div class="h-32 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl border border-slate-100"></div>
-                                <div class="h-32 bg-slate-50 rounded-xl border border-slate-100"></div>
-                                <div class="h-32 bg-slate-50 rounded-xl border border-slate-100"></div>
-                                <div class="h-32 bg-slate-50 rounded-xl border border-slate-100"></div>
+                            <!-- Main Content -->
+                            <div class="col-span-10 p-6 space-y-4 bg-slate-50">
+                                <!-- Header -->
+                                <div class="flex items-center justify-between">
+                                    <div class="h-8 w-32 bg-slate-200 rounded-lg"></div>
+                                    <div class="flex gap-2">
+                                        <div class="h-8 w-20 bg-accent-blue rounded-lg"></div>
+                                        <div class="h-8 w-16 bg-white border border-slate-200 rounded-lg"></div>
+                                    </div>
+                                </div>
+                                <!-- Stats Cards -->
+                                <div class="grid grid-cols-4 gap-4">
+                                    <div class="h-28 bg-white rounded-xl border border-slate-100 p-4 shadow-sm">
+                                        <div class="h-2 w-12 bg-slate-200 rounded mb-2"></div>
+                                        <div class="h-8 w-16 bg-gradient-to-r from-accent-blue to-accent-cyan rounded-lg mb-2"></div>
+                                        <div class="h-2 w-8 bg-green-500/20 rounded"></div>
+                                    </div>
+                                    <div class="h-28 bg-white rounded-xl border border-slate-100 p-4 shadow-sm">
+                                        <div class="h-2 w-16 bg-slate-200 rounded mb-2"></div>
+                                        <div class="h-8 w-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg mb-2"></div>
+                                        <div class="h-2 w-10 bg-green-500/20 rounded"></div>
+                                    </div>
+                                    <div class="h-28 bg-white rounded-xl border border-slate-100 p-4 shadow-sm">
+                                        <div class="h-2 w-14 bg-slate-200 rounded mb-2"></div>
+                                        <div class="h-8 w-20 bg-gradient-to-r from-amber-500 to-orange-500 rounded-lg mb-2"></div>
+                                        <div class="h-2 w-6 bg-green-500/20 rounded"></div>
+                                    </div>
+                                    <div class="h-28 bg-white rounded-xl border border-slate-100 p-4 shadow-sm">
+                                        <div class="h-2 w-12 bg-slate-200 rounded mb-2"></div>
+                                        <div class="h-8 w-14 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg mb-2"></div>
+                                        <div class="h-2 w-10 bg-green-500/20 rounded"></div>
+                                    </div>
+                                </div>
+                                <!-- Chart Area -->
+                                <div class="h-56 bg-white rounded-xl border border-slate-100 p-4 shadow-sm">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <div class="h-4 w-24 bg-slate-200 rounded"></div>
+                                        <div class="flex gap-2">
+                                            <div class="h-2 w-8 bg-accent-blue/30 rounded"></div>
+                                            <div class="h-2 w-8 bg-accent-cyan/30 rounded"></div>
+                                        </div>
+                                    </div>
+                                    <!-- SVG Chart -->
+                                    <svg class="w-full h-32" viewBox="0 0 400 100" preserveAspectRatio="none">
+                                        <!-- Grid lines -->
+                                        <line x1="0" y1="25" x2="400" y2="25" stroke="#f1f5f9" stroke-width="1"/>
+                                        <line x1="0" y1="50" x2="400" y2="50" stroke="#f1f5f9" stroke-width="1"/>
+                                        <line x1="0" y1="75" x2="400" y2="75" stroke="#f1f5f9" stroke-width="1"/>
+                                        <!-- Blue line (filled) -->
+                                        <path d="M0,80 L50,65 L100,70 L150,45 L200,50 L250,30 L300,35 L350,20 L400,15 L400,100 L0,100 Z" fill="url(#gradientBlue)" opacity="0.3"/>
+                                        <path d="M0,80 L50,65 L100,70 L150,45 L200,50 L250,30 L300,35 L350,20 L400,15" stroke="#2563EB" stroke-width="2" fill="none"/>
+                                        <!-- Cyan line (filled) -->
+                                        <path d="M0,85 L50,75 L100,80 L150,60 L200,70 L250,55 L300,50 L350,40 L400,35 L400,100 L0,100 Z" fill="url(#gradientCyan)" opacity="0.3"/>
+                                        <path d="M0,85 L50,75 L100,80 L150,60 L200,70 L250,55 L300,50 L350,40 L400,35" stroke="#0EA5E9" stroke-width="2" fill="none"/>
+                                        <!-- Gradients -->
+                                        <defs>
+                                            <linearGradient id="gradientBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+                                                <stop offset="0%" style="stop-color:#2563EB;stop-opacity:0.5"/>
+                                                <stop offset="100%" style="stop-color:#2563EB;stop-opacity:0"/>
+                                            </linearGradient>
+                                            <linearGradient id="gradientCyan" x1="0%" y1="0%" x2="0%" y2="100%">
+                                                <stop offset="0%" style="stop-color:#0EA5E9;stop-opacity:0.5"/>
+                                                <stop offset="100%" style="stop-color:#0EA5E9;stop-opacity:0"/>
+                                            </linearGradient>
+                                        </defs>
+                                    </svg>
+                                </div>
                             </div>
-                            <div class="h-64 bg-slate-50 rounded-xl border border-slate-100"></div>
+                        </div>
+                    </div>
+                    <!-- Floating badge -->
+                    <div class="absolute -right-4 top-1/3 bg-white px-4 py-2 rounded-xl shadow-lg border border-slate-200">
+                        <div class="flex items-center gap-2">
+                            <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                            <span class="text-sm font-medium text-slate-700">Live Data</span>
                         </div>
                     </div>
                 </div>
